@@ -24,8 +24,8 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm install
+        cache: 'pnpm'
+    - run: pnpm install
     - run: npx nx format:check
     - run: npx nx affected -t lint --parallel=3
     - run: npx nx affected -t test --parallel=3 --configuration=ci
