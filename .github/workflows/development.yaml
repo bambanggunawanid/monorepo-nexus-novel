@@ -44,8 +44,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-pnpm-store-
 
-    - uses: nrwl/nx-set-shas@v3
     - name: Build All App
-      run: pnpm nx all:build
+      run: pnpm all:build
     - name: Test All App Affected
       run: pnpm all:test:affected
