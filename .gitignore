@@ -85,3 +85,6 @@ terraform.rc
 
 # Credential
 **/credentials
+
+# Next.js
+.next
