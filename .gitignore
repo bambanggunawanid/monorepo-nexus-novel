@@ -38,6 +38,7 @@ yarn-error.log
 /packages/**/.npmignore
 /packages/**/LICENSE
 *.tsbuildinfo
+/.pnpm-store
 
 # e2e
 /e2e/*.js

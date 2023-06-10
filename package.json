@@ -1,0 +1,11 @@
+{
+  "name": "novel-nexus-nxrepo",
+  "version": "1.0.0",
+  "description": "Mono repo project for book recommendation and price",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bambang",
+  "license": "ISC"
+}
