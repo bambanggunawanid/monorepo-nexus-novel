@@ -1,5 +1,5 @@
 {
-  "name": "frontend-nexus-frontend",
+  "name": "nexus-frontend",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/frontend/nexus-frontend",
   "projectType": "application",
@@ -22,16 +22,16 @@
       "executor": "@nx/next:server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "frontend-nexus-frontend:build",
+        "buildTarget": "nexus-frontend:build",
         "dev": true
       },
       "configurations": {
         "development": {
-          "buildTarget": "frontend-nexus-frontend:build:development",
+          "buildTarget": "nexus-frontend:build:development",
           "dev": true
         },
         "production": {
-          "buildTarget": "frontend-nexus-frontend:build:production",
+          "buildTarget": "nexus-frontend:build:production",
           "dev": false
         }
       }
@@ -39,7 +39,7 @@
     "export": {
       "executor": "@nx/next:export",
       "options": {
-        "buildTarget": "frontend-nexus-frontend:build:production"
+        "buildTarget": "nexus-frontend:build:production"
       }
     },
     "test": {
