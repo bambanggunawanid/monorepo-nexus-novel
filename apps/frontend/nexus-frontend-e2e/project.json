@@ -1,13 +1,13 @@
 {
   "name": "nexus-frontend-e2e",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/nexus-frontend-e2e/src",
+  "sourceRoot": "apps/frontend/nexus-frontend-e2e/src",
   "projectType": "application",
   "targets": {
     "e2e": {
       "executor": "@nx/cypress:cypress",
       "options": {
-        "cypressConfig": "apps/nexus-frontend-e2e/cypress.config.ts",
+        "cypressConfig": "apps/frontend/nexus-frontend-e2e/cypress.config.ts",
         "baseUrl": "http://localhost:4200",
         "testingType": "e2e"
       }
@@ -16,7 +16,7 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/nexus-frontend-e2e/**/*.{js,ts}"]
+        "lintFilePatterns": ["apps/frontend/nexus-frontend-e2e/**/*.{js,ts}"]
       }
     }
   },

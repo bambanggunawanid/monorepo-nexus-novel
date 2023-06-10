@@ -8,6 +8,6 @@ describe('nexus-frontend', () => {
     cy.login('my-email@something.com', 'myPassword');
 
     // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome nexus-frontend');
+    getGreeting().contains('Welcome frontend/nexus-frontend');
   });
 });

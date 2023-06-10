@@ -3,7 +3,7 @@
     "default": {
       "runner": "nx-cloud",
       "options": {
-        "cacheableOperations": [],
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
         "accessToken": "NjQ1ZTA1NGMtMzk2OC00MDUzLWE0MjAtY2Y5MTA2ZTMxZTA1fHJlYWQtd3JpdGU="
       }
     }
@@ -35,5 +35,6 @@
         "linter": "eslint"
       }
     }
-  }
+  },
+  "defaultProject": "nexus-frontend"
 }
