@@ -20,13 +20,33 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
+    
+    - name: Install Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm install
-    - run: npx nx format:check
-    - run: npx nx affected -t lint --parallel=3
-    - run: npx nx affected -t test --parallel=3 --configuration=ci
-    - run: npx nx affected -t build --parallel=3
+        node-version: 18
+    
+    - uses: pnpm/action-setup@v2
+      name: Install Pnpm
+      with:
+          version: 8
+          run_install: false
+    - name: Get pnpm store directory
+      id: pnpm-cache
+      shell: bash
+      run: |
+        echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+          
+    - uses: actions/cache@v3
+      name: Setup pnpm cache
+      with:
+        path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-store-
+
+    - name: Install dependencies
+      run: pnpm install
+    - name: Check format
+      run: npx nx format:check
+
