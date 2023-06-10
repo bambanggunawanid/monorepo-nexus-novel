@@ -24,6 +24,7 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 18
+        cache: 'pnpm'
 
     - name: Install Pnpm
       uses: pnpm/action-setup@v2
@@ -32,7 +33,7 @@ jobs:
           run_install: false
 
     - name: Install Nx
-      uses: nrwl/nx-set-shas@v2
+      uses: nrwl/nx-set-shas@v3
 
     - name: Get pnpm store directory
       id: pnpm-cache
@@ -47,6 +48,11 @@ jobs:
         key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
         restore-keys: |
           ${{ runner.os }}-pnpm-store-
+
+    - run: npx nx format:check
+    - run: npx nx affected -t lint --parallel=3
+    - run: npx nx affected -t test --parallel=3 --configuration=ci
+    - run: npx nx affected -t build --parallel=3
 
     - name: Build All App
       run: pnpm all:build
