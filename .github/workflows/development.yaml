@@ -50,7 +50,9 @@ jobs:
 
     - name: Pnpm Install All
       run: pnpm install
+
     - name: Build All App
       run: pnpm all:build
+
     - name: Test All App Affected
       run: pnpm all:test:affected
