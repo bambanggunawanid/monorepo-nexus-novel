@@ -19,7 +19,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-
     - name: Install Node.js
       uses: actions/setup-node@v3
       with:
@@ -45,6 +44,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-pnpm-store-
 
+    - uses: nrwl/nx-set-shas@v3
     - name: Build All App
       run: pnpm nx all:build
     - name: Test All App Affected
