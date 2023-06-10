@@ -17,7 +17,6 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
     - uses: actions/checkout@v3
@@ -27,4 +26,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm install
-    - run: npm run build --if-present
+    - run: npx nx format:check
+    - run: npx nx affected -t lint --parallel=3
+    - run: npx nx affected -t test --parallel=3 --configuration=ci
+    - run: npx nx affected -t build --parallel=3
