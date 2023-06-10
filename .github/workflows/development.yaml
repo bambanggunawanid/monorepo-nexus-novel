@@ -45,7 +45,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-pnpm-store-
 
-    - name: Check format
-      run: npx nx format:check
-    - name: Test All App
-      run: pnpm all:test
+    - name: Build All App
+      run: pnpm nx all:build
+    - name: Test All App Affected
+      run: pnpm all:test:affected
