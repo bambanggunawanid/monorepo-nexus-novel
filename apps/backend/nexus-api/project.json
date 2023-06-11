@@ -4,6 +4,10 @@
     "sourceRoot": "apps/backend/nexus-api/src",
     "projectType": "application",
     "targets": {
+        "docker-build": {
+            "dependsOn": ["build"],
+            "command": "docker build -f apps/backend/nexus-api/Dockerfile.dev . -t nexus-api"
+        },
         "build": {
             "executor": "@nx/webpack:webpack",
             "outputs": ["{options.outputPath}"],
