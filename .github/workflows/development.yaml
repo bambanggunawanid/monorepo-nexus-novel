@@ -11,6 +11,7 @@ on:
 
 jobs:
   build:
+    name: Build and Test
     runs-on: self-hosted
 
     strategy:
@@ -48,11 +49,8 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-pnpm-store-
 
-    - name: Pnpm Install All
-      run: pnpm install
-
     - name: Build All App
       run: pnpm all:build
 
-    - name: Test All App Affected
+    - name: Unit Test All App Affected
       run: pnpm all:test:affected
