@@ -1,5 +1,5 @@
 {
-  "name": "@novel-nexus/auth-lib",
-  "version": "0.0.1",
-  "type": "commonjs"
+    "name": "@novel-nexus/auth-lib",
+    "version": "0.0.1",
+    "type": "commonjs"
 }
