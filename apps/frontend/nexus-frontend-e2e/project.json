@@ -1,25 +1,27 @@
 {
-  "name": "nexus-frontend-e2e",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/frontend/nexus-frontend-e2e/src",
-  "projectType": "application",
-  "targets": {
-    "e2e": {
-      "executor": "@nx/cypress:cypress",
-      "options": {
-        "cypressConfig": "apps/frontend/nexus-frontend-e2e/cypress.config.ts",
-        "baseUrl": "http://localhost:4200",
-        "testingType": "e2e"
-      }
+    "name": "nexus-frontend-e2e",
+    "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "apps/frontend/nexus-frontend-e2e/src",
+    "projectType": "application",
+    "targets": {
+        "e2e": {
+            "executor": "@nx/cypress:cypress",
+            "options": {
+                "cypressConfig": "apps/frontend/nexus-frontend-e2e/cypress.config.ts",
+                "baseUrl": "http://localhost:4200",
+                "testingType": "e2e"
+            }
+        },
+        "lint": {
+            "executor": "@nx/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": [
+                    "apps/frontend/nexus-frontend-e2e/**/*.{js,ts}"
+                ]
+            }
+        }
     },
-    "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["apps/frontend/nexus-frontend-e2e/**/*.{js,ts}"]
-      }
-    }
-  },
-  "tags": [],
-  "implicitDependencies": ["nexus-frontend"]
+    "tags": [],
+    "implicitDependencies": ["nexus-frontend"]
 }
