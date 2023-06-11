@@ -1,40 +1,40 @@
 {
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "nx-cloud",
-      "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"],
-        "accessToken": "NjQ1ZTA1NGMtMzk2OC00MDUzLWE0MjAtY2Y5MTA2ZTMxZTA1fHJlYWQtd3JpdGU="
-      }
-    }
-  },
-  "affected": {
-    "defaultBase": "main"
-  },
-  "targetDefaults": {
-    "test": {
-      "inputs": ["default", "^default", "{workspaceRoot}/jest.preset.js"]
+    "tasksRunnerOptions": {
+        "default": {
+            "runner": "nx-cloud",
+            "options": {
+                "cacheableOperations": ["build", "lint", "test", "e2e"],
+                "accessToken": "NjQ1ZTA1NGMtMzk2OC00MDUzLWE0MjAtY2Y5MTA2ZTMxZTA1fHJlYWQtd3JpdGU="
+            }
+        }
     },
-    "lint": {
-      "inputs": [
-        "default",
-        "{workspaceRoot}/.eslintrc.json",
-        "{workspaceRoot}/.eslintignore"
-      ]
-    }
-  },
-  "generators": {
-    "@nx/react": {
-      "application": {
-        "babel": true
-      }
+    "affected": {
+        "defaultBase": "main"
     },
-    "@nx/next": {
-      "application": {
-        "style": "styled-jsx",
-        "linter": "eslint"
-      }
-    }
-  },
-  "defaultProject": "nexus-frontend"
+    "targetDefaults": {
+        "test": {
+            "inputs": ["default", "^default", "{workspaceRoot}/jest.preset.js"]
+        },
+        "lint": {
+            "inputs": [
+                "default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{workspaceRoot}/.eslintignore"
+            ]
+        }
+    },
+    "generators": {
+        "@nx/react": {
+            "application": {
+                "babel": true
+            }
+        },
+        "@nx/next": {
+            "application": {
+                "style": "styled-jsx",
+                "linter": "eslint"
+            }
+        }
+    },
+    "defaultProject": "nexus-frontend"
 }
