@@ -1,70 +1,70 @@
 {
-  "name": "nexus-frontend",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/frontend/nexus-frontend",
-  "projectType": "application",
-  "targets": {
-    "build": {
-      "executor": "@nx/next:build",
-      "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "production",
-      "options": {
-        "outputPath": "dist/apps/frontend/nexus-frontend"
-      },
-      "configurations": {
-        "development": {
-          "outputPath": "apps/frontend/nexus-frontend"
+    "name": "nexus-frontend",
+    "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "apps/frontend/nexus-frontend",
+    "projectType": "application",
+    "targets": {
+        "build": {
+            "executor": "@nx/next:build",
+            "outputs": ["{options.outputPath}"],
+            "defaultConfiguration": "production",
+            "options": {
+                "outputPath": "dist/apps/frontend/nexus-frontend"
+            },
+            "configurations": {
+                "development": {
+                    "outputPath": "apps/frontend/nexus-frontend"
+                },
+                "production": {}
+            }
         },
-        "production": {}
-      }
-    },
-    "serve": {
-      "executor": "@nx/next:server",
-      "defaultConfiguration": "development",
-      "options": {
-        "buildTarget": "nexus-frontend:build",
-        "dev": true
-      },
-      "configurations": {
-        "development": {
-          "buildTarget": "nexus-frontend:build:development",
-          "dev": true
+        "serve": {
+            "executor": "@nx/next:server",
+            "defaultConfiguration": "development",
+            "options": {
+                "buildTarget": "nexus-frontend:build",
+                "dev": true
+            },
+            "configurations": {
+                "development": {
+                    "buildTarget": "nexus-frontend:build:development",
+                    "dev": true
+                },
+                "production": {
+                    "buildTarget": "nexus-frontend:build:production",
+                    "dev": false
+                }
+            }
         },
-        "production": {
-          "buildTarget": "nexus-frontend:build:production",
-          "dev": false
+        "export": {
+            "executor": "@nx/next:export",
+            "options": {
+                "buildTarget": "nexus-frontend:build:production"
+            }
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "apps/frontend/nexus-frontend/jest.config.ts",
+                "passWithNoTests": true
+            },
+            "configurations": {
+                "ci": {
+                    "ci": true,
+                    "codeCoverage": true
+                }
+            }
+        },
+        "lint": {
+            "executor": "@nx/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": [
+                    "apps/frontend/nexus-frontend/**/*.{ts,tsx,js,jsx}"
+                ]
+            }
         }
-      }
     },
-    "export": {
-      "executor": "@nx/next:export",
-      "options": {
-        "buildTarget": "nexus-frontend:build:production"
-      }
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "apps/frontend/nexus-frontend/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
-    },
-    "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": [
-          "apps/frontend/nexus-frontend/**/*.{ts,tsx,js,jsx}"
-        ]
-      }
-    }
-  },
-  "tags": []
+    "tags": []
 }

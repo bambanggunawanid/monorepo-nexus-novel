@@ -2,15 +2,15 @@ import './global.css';
 import { StyledJsxRegistry } from './registry';
 
 export default function RootLayout({
-  children,
+    children,
 }: {
-  children: React.ReactNode;
+    children: React.ReactNode;
 }) {
-  return (
-    <html>
-      <body>
-        <StyledJsxRegistry>{children}</StyledJsxRegistry>
-      </body>
-    </html>
-  );
+    return (
+        <html>
+            <body>
+                <StyledJsxRegistry>{children}</StyledJsxRegistry>
+            </body>
+        </html>
+    );
 }
