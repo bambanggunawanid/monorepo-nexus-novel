@@ -5,9 +5,9 @@ name: Common Feature Branch
 
 on:
   push:
-    branches: [ "*", "*/*", "!main", "!production", "!development" ]
+    branches: [ "feature/**", "!main", "!production", "!development" ]
   pull_request:
-    branches: [ "*", "*/*", "!main", "!production", "!development" ]
+    branches: [ "feature/**", "!main", "!production", "!development" ]
 
 jobs:
   build:
