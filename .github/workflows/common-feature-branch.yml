@@ -7,7 +7,7 @@ on:
   pull_request:
     branches: [ "feature/**", "!main", "!production", "!development" ]
 
-jobs:
+jjobs:
   build:
     name: Build and Test
     runs-on: ubuntu-latest
@@ -19,11 +19,16 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
     - name: Install Pnpm
       uses: pnpm/action-setup@v2
       with:
           version: 8
-          run_install: false
+          run_install: true
 
     - name: Install Nx
       run: pnpm install --global nx@latest
@@ -33,7 +38,6 @@ jobs:
       shell: bash
       run: |
         echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-
     - name: Setup pnpm cache
       uses: actions/cache@v3
       with:
@@ -41,6 +45,5 @@ jobs:
         key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
         restore-keys: |
           ${{ runner.os }}-pnpm-store-
-
     - name: Build All App
       run: pnpm all:build
