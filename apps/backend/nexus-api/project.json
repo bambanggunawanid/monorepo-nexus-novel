@@ -20,7 +20,16 @@
                 "tsConfig": "apps/backend/nexus-api/tsconfig.app.json",
                 "assets": ["apps/backend/nexus-api/src/assets"],
                 "isolatedConfig": true,
-                "webpackConfig": "apps/backend/nexus-api/webpack.config.js"
+                "webpackConfig": "apps/backend/nexus-api/webpack.config.js",
+                "tsPlugins": [
+                    {
+                        "name": "@nestjs/swagger/plugin",
+                        "options": {
+                            "classValidatorShim": false,
+                            "introspectComments": true
+                        }
+                    }
+                ]
             },
             "configurations": {
                 "development": {},

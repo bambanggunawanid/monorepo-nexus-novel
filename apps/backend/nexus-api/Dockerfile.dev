@@ -5,7 +5,8 @@ ENV PORT=3000
 
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN npm install -g pnpm
+RUN pnpm install
 RUN addgroup --system nexus-api && \
           adduser --system -G nexus-api nexus-api
 COPY /dist/apps/backend/nexus-api nexus-api
