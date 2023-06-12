@@ -5,9 +5,9 @@ name: Development
 
 on:
   push:
-    branches: [ "!main", "!production" ]
+    branches: [ "development" ]
   pull_request:
-    branches: [ "!main", "!production" ]
+    branches: [ "development" ]
 
 jobs:
   build:
