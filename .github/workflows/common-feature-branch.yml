@@ -7,7 +7,7 @@ on:
   pull_request:
     branches: [ "feature/**", "!main", "!production", "!development" ]
 
-jjobs:
+jobs:
   build:
     name: Build and Test
     runs-on: ubuntu-latest
