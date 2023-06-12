@@ -47,3 +47,5 @@ jobs:
           ${{ runner.os }}-pnpm-store-
     - name: Build All App
       run: pnpm all:build
+    - name: Unit Test All App
+      run: pnpm all:test

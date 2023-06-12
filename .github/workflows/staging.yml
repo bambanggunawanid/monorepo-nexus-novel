@@ -48,5 +48,5 @@ jobs:
     - name: Build All App
       run: pnpm all:build
 
-    - name: Unit Test All App Affected
-      run: pnpm all:test:affected
+    - name: Unit Test All App
+      run: pnpm all:test

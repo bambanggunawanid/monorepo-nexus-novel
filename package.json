@@ -16,8 +16,7 @@
         "backend:test": "pnpm nx run nexus-api:test",
         "backend:e2e": "pnpm nx e2e nexus-api-e2e",
         "all:build": "pnpm nx run-many --target=build --all",
-        "all:test": "pnpm nx run-many --target=test --all",
-        "all:test:affected": "pnpm nx affected --target=test --base=main --head=HEAD"
+        "all:test": "pnpm nx run-many --target=test --all"
     },
     "private": true,
     "author": "Bambang",
