@@ -20,4 +20,10 @@ export class User {
 
     @Column({ default: true })
     isActive: boolean;
+
+    @Column()
+    createdAt: Date;
+
+    @Column()
+    updatedAt: Date;
 }

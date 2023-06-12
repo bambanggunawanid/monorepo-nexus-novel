@@ -18,14 +18,16 @@ async function bootstrap() {
     const address = process.env.ADDRESS || '127.0.0.1';
 
     const config = new DocumentBuilder()
+        .addServer(`http://${address}:${port}/${globalPrefix}`)
         .setTitle('Nexus API')
         .setDescription('Nexus API for the Nexus App Files Archive')
+        .setExternalDoc('Postman Collection', '/swagger-json')
         .setVersion('1.0')
         .addTag('nexus-api')
         .build();
     const document = SwaggerModule.createDocument(app, config);
+    SwaggerModule.setup('swagger', app, document);
 
-    SwaggerModule.setup('/', app, document);
     app.setGlobalPrefix(globalPrefix);
     await app.listen(port, address);
     Logger.log(
