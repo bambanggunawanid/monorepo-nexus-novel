@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "novel-nexus-monorepo",
+  "private_key_id": "e9ba23c5fbe565b1b596c8b77aefc7b76b9d0716",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC+n+v9trylLAH/\nDnNhVom4q7OJa0iJzDrG52EgVvlmckO8svCPHU5xuW2vo9+kPqY4xKY7Ni75n78w\n7sFBS921e02GcdBncwObyFVKcnxGs8ByTj0RZb9kmwEnz7xhOJn82sFe76Eh0Y4f\nS+UvsruZVGVL9n5N/+DVYtlMgmJibfKdCkC2eiH4QfJqrs0asfN6fsuDdUWV31AK\n+8KgfVEL1e35FUbxh+Z4RgspaTc7IW7HblLIVl8Tw8R7A0JwAxyBlsg/6goQlhns\n+0dDZGi9vqhqv5/HFwQdrkgeHSkMsYdjdcfB/W8EqiceKs4UzSv+6QNM+kSZT1on\na0sqAGYnAgMBAAECggEAGg5F9ZIKyxDu3OwevUlU3dcqXTg63Ar8Zb+uuPrqcCRi\nOeLDmuxIkqbj5UQjB5JAqjXG+wT2+svpGEkqRUCXd3z5Jc1czScdcSe68MghUJC1\nV2p2UnBz7s55I/XzK97OvY8xK0bZ4YOBR6naE+D8X4L3raBttz+ofcJbLWgNBqL/\nsW2TSBPNZ3MFEqdpT76uBXZgX+EQFovkWyWKgOmqDrnDqYN9leFw9gvMwBPCGwho\n9OkTk+WcTw5MoCEg6FjPr8J5AlKirJFfjbWs4L9HMDeeAS+ymPS8Tt6qrsF6PtF4\nH+Gp/Cfp6ue7jTzRC1pt5vbhp8MwC8tdHKtme9SjgQKBgQD+Bww7C4FVQs9WpNTc\n2hExt0Z+a/sJHkr/quN5D+7hZc1JiIIiJlxd1TrKSeSWcHHI0rnkcOhv+dMSVODH\nblx55EFCXkg4Eay0mkejqYlnUwFEiErpyCl11EI0gECtvk/KbjFo4XvKjb2KToVL\nd2ADF6uqC0h6I3uSfGFKTNJqYQKBgQDAGtfDxwEaHm4xTR/0gY6WjIK47+J9La1+\nacHSJ1P+z+8VK9c95yWfZkQLF9vmRTaJKzr2HY3SKVrXzWEJSCG/WPiuJ0H/vjXP\nM5Lt5CdAwoH/yDrgKHEmKRn08MobKXeor7b4sBk3j0hVkUd7LguPLAhZAnTPsMWF\ntafG7h9thwKBgAT8EmteMG2B4ButJFgpF0lIdWOprsVhCMu3iLspauCVZM/ak+Mj\nqZBVzM+HX6rsDe+I4wjuhkEcP94OOFLxgXMK3ZT10Kj4/9CTbnBxtTaH1HCJ1B5+\nRQIA5kOteJdwMpSgUOvj8M/qtBtwqwDuGL42yrGNgyCSbaxUMHyKwV5BAoGAcc71\nSM0bAAhLK/YPGmGuwc4Ym8uyGIr5H80zwHcAMhOqBpbke433IgoKAbBu3Grgtj7g\nPXKg1IMfiH3qIP+UzrG9Eh+73/EmG8zoHPtvrdQOBCTxjF8pOXxcHlqQwaq9czg2\nY/qf1eSS6+6XtIhA3N8vStxDq8+EFYTbEuV7xP0CgYEAmahEDVeKSvWBcremzyIl\nxb6mR52WgbXfERvXkR0RxARXzDiY/c+sPylxBipAPGDpoXvSQLP44lGyjQFevD+E\nbuki+GW4qAvUpaX0hcegN0k/J2yh2hCPGdNilgZtz3LvE91zS1QTZcbZzHdJ4pCd\nSU5ajpaRVj2rRIBvMVQClGA=\n-----END PRIVATE KEY-----\n",
+  "client_email": "terraform@novel-nexus-monorepo.iam.gserviceaccount.com",
+  "client_id": "115037002154078578949",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/terraform%40novel-nexus-monorepo.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
