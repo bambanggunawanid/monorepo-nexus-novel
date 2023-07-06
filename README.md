@@ -1,6 +1,12 @@
 # Novel Nexus NX Monorepo
 Mono repo project for book recommendation and price
 
+### Current Update
+- [x] Add Nx Workspace
+- [x] Add NestJS Schematics
+- [x] Add NestJS Library
+- [x] Add Team Access Control
+
 # Run Development Serve In Every Service:
 ## Apps Service
 ```bash
