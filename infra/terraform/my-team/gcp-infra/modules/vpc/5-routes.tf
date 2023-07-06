@@ -1,39 +1,62 @@
-resource "aws_route_table" "private" {
-  vpc_id = aws_vpc.this.id
-
-  route {
-    cidr_block     = "0.0.0.0/0"
-    nat_gateway_id = aws_nat_gateway.this.id
-  }
-
-  tags = {
-    Name = "${var.env}-private"
-  }
+resource "google_compute_router" "this" {
+  name    = "${var.env}-router"
+  network = google_compute_network.this.self_link
 }
 
-resource "aws_route_table" "public" {
-  vpc_id = aws_vpc.this.id
-
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.this.id
-  }
-
-  tags = {
-    Name = "${var.env}-public"
-  }
+resource "google_compute_route" "public" {
+  name               = "${var.env}-public-route"
+  network            = google_compute_network.this.self_link
+  dest_range         = "0.0.0.0/0"
+  next_hop_gateway   = google_compute_router_nat.this.name
+  priority           = 1000
+  tags               = [google_compute_router_nat.this.name]
 }
 
-resource "aws_route_table_association" "private" {
-  count = length(var.private_subnets)
-
-  subnet_id      = aws_subnet.private[count.index].id
-  route_table_id = aws_route_table.private.id
+resource "google_compute_route" "private" {
+  count               = length(var.private_subnets)
+  name                = "${var.env}-private-route-${var.azs[count.index]}"
+  network             = google_compute_network.this.name
+  dest_range          = "0.0.0.0/0"
+  next_hop_instance   = google_compute_router_nat.this.name
+  priority            = 100
+  tags                = [google_compute_router_nat.this.name]
 }
 
-resource "aws_route_table_association" "public" {
-  count = length(var.public_subnets)
+resource "google_compute_firewall" "allow-ssh" {
+  name        = "allow-ssh"
+  network     = google_compute_network.this.name
+  target_tags = ["allow-ssh"]
 
-  subnet_id      = aws_subnet.public[count.index].id
-  route_table_id = aws_route_table.public.id
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+}
+
+resource "google_compute_firewall" "allow-http" {
+  name        = "allow-http"
+  network     = google_compute_network.this.name
+  target_tags = ["allow-http"]
+
+  allow {
+    protocol = "tcp"
+    ports    = ["80"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+}
+
+resource "google_compute_firewall" "allow-https" {
+  name        = "allow-https"
+  network     = google_compute_network.this.name
+  target_tags = ["allow-https"]
+
+  allow {
+    protocol = "tcp"
+    ports    = ["443"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
 }

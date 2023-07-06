@@ -1,10 +1,7 @@
-resource "aws_vpc" "this" {
-  cidr_block = var.vpc_cidr_block
-
-  enable_dns_support   = true
-  enable_dns_hostnames = true
-
-  tags = {
-    Name = "${var.env}-main"
-  }
+resource "google_compute_network" "this" {
+  project                           = var.project_id
+  name                              = "${var.network_name}-vpc"
+  auto_create_subnetworks           = false
+  description                       = "Network for ${var.env}"
+  routing_mode                      = "GLOBAL"
 }

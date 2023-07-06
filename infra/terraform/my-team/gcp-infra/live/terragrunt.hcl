@@ -1,32 +1,26 @@
-# remote_state {
-#   backend = "gcs" {}
-#   config = {
-#     project  = "novel-nexus-monorepo"
-#     location = "us-central1"
-#     bucket   = "nexus-global-gsb"
-#     prefix   = "${basename(get_parent_terragrunt_dir())}/${path_relative_to_include()}"
-#   }
-# }
-
 remote_state {
-  backend = "local"
+  backend = "gcs"
   generate = {
-    path      = "backend.tf"
+    path      = "state.tf"
     if_exists = "overwrite_terragrunt"
   }
-
   config = {
-    path = "${path_relative_to_include()}/terraform.tfstate"
+    bucket      = "nexus-global-gsb"
+    prefix      = "${basename(get_parent_terragrunt_dir())}/${path_relative_to_include()}"
+    project = "novel-nexus-monorepo"
+    # credentials = "novel-nexus-monorepo-e9ba23c5fbe5.json"
   }
 }
 
 generate "provider" {
-  path = "provider.tf"
+  path      = "provider.tf"
   if_exists = "overwrite_terragrunt"
 
   contents = <<EOF
-provider "aws" {
-    region = "us-east-1"
-}
-EOF
+  provider "google" {
+    # credentials = file("novel-nexus-monorepo-e9ba23c5fbe5.json")
+    project     = "novel-nexus-monorepo"
+    region      = "us-central1"
+  }
+  EOF
 }
