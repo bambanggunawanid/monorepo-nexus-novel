@@ -10,11 +10,7 @@
         "package.json"
     ],
     "scripts": {
-        "lint:format": "pnpm nx run-many --target=lint --all --fix",
-        "prettier:format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-        "nexus-cloud-web:start": "pnpm nx run nexus-cloud-web:serve",
-        "nexus-cloud-web:test": "pnpm nx run nexus-cloud-web:test",
-        "nexus-cloud-web:e2e": "pnpm nx e2e nexus-cloud-web-e2e",
+        "all:lint": "pnpm nx run-many --target=lint --all --fix",
         "all:build": "pnpm nx run-many --target=build --all",
         "all:test": "pnpm nx run-many --target=test --all"
     },
