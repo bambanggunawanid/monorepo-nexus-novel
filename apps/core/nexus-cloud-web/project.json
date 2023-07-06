@@ -1,0 +1,81 @@
+{
+    "name": "core-nexus-cloud-web",
+    "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "apps/core/nexus-cloud-web/src",
+    "projectType": "application",
+    "targets": {
+        "build": {
+            "executor": "@nx/vite:build",
+            "outputs": ["{options.outputPath}"],
+            "defaultConfiguration": "production",
+            "options": {
+                "outputPath": "dist/apps/core/nexus-cloud-web",
+                "generatePackageJson": true
+            },
+            "configurations": {
+                "development": {
+                    "mode": "development"
+                },
+                "production": {
+                    "mode": "production"
+                }
+            }
+        },
+        "serve": {
+            "executor": "@nx/vite:dev-server",
+            "defaultConfiguration": "development",
+            "options": {
+                "buildTarget": "core-nexus-cloud-web:build"
+            },
+            "configurations": {
+                "development": {
+                    "buildTarget": "core-nexus-cloud-web:build:development",
+                    "hmr": true
+                },
+                "production": {
+                    "buildTarget": "core-nexus-cloud-web:build:production",
+                    "hmr": false
+                }
+            }
+        },
+        "preview": {
+            "executor": "@nx/vite:preview-server",
+            "defaultConfiguration": "development",
+            "options": {
+                "buildTarget": "core-nexus-cloud-web:build"
+            },
+            "configurations": {
+                "development": {
+                    "buildTarget": "core-nexus-cloud-web:build:development"
+                },
+                "production": {
+                    "buildTarget": "core-nexus-cloud-web:build:production"
+                }
+            }
+        },
+        "test": {
+            "executor": "@nx/vite:test",
+            "outputs": ["coverage/apps/core/nexus-cloud-web"],
+            "options": {
+                "passWithNoTests": true,
+                "reportsDirectory": "../../../coverage/apps/core/nexus-cloud-web"
+            }
+        },
+        "lint": {
+            "executor": "@nx/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": [
+                    "apps/core/nexus-cloud-web/**/*.{ts,tsx,js,jsx}"
+                ]
+            }
+        },
+        "serve-static": {
+            "executor": "@nx/web:file-server",
+            "options": {
+                "buildTarget": "core-nexus-cloud-web:build"
+            }
+        }
+    },
+    "tags": []
+}

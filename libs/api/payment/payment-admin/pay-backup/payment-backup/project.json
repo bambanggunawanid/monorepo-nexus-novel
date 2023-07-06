@@ -1,0 +1,32 @@
+{
+    "name": "api-payment-payment-admin-pay-backup-payment-backup",
+    "$schema": "../../../../../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "libs/api/payment/payment-admin/pay-backup/payment-backup/src",
+    "projectType": "library",
+    "targets": {
+        "lint": {
+            "executor": "@nx/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": [
+                    "libs/api/payment/payment-admin/pay-backup/payment-backup/**/*.ts"
+                ]
+            }
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "libs/api/payment/payment-admin/pay-backup/payment-backup/jest.config.ts",
+                "passWithNoTests": true
+            },
+            "configurations": {
+                "ci": {
+                    "ci": true,
+                    "codeCoverage": true
+                }
+            }
+        }
+    },
+    "tags": []
+}

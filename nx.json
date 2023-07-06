@@ -21,12 +21,29 @@
                 "{workspaceRoot}/.eslintrc.json",
                 "{workspaceRoot}/.eslintignore"
             ]
+        },
+        "build": {
+            "executor": "@nx/vite:vite",
+            "options": {
+                "generatePackageJson": true
+            }
         }
     },
     "generators": {
         "@nx/react": {
             "application": {
+                "style": "styled-jsx",
+                "linter": "eslint",
+                "bundler": "vite",
                 "babel": true
+            },
+            "component": {
+                "style": "styled-jsx"
+            },
+            "library": {
+                "style": "styled-jsx",
+                "linter": "eslint",
+                "unitTestRunner": "jest"
             }
         },
         "@nx/next": {
@@ -36,5 +53,5 @@
             }
         }
     },
-    "defaultProject": "nexus-frontend"
+    "defaultProject": "core-nexus-cloud-web"
 }
