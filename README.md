@@ -10,7 +10,7 @@ Mono repo project for book recommendation and price
 - [x] Add NestJS Library
 - [x] Add NestJS Schematics
 - [x] Add Team Access Control
-- [] Add Storybook
+- [ ] Add Storybook
 #### CI/CD
 - [x] Add Github Action
 - [x] Add Github Action for Nx
@@ -21,12 +21,12 @@ Mono repo project for book recommendation and price
 #### DevOps
 - [x] Add Terragrunt
 - [x] Add Terraform Module
-- [] Add Dockerfile for Nx
-- [] Add Dockerfile for Nx ReactJS
-- [] Add Dockerfile for Nx ReactJS Library
-- [] Add Dockerfile for Nx NestJS
-- [] Add Dockerfile for Nx NestJS Library
-- [] Add Kubernetes for Nx
+- [ ] Add Dockerfile for Nx
+- [ ] Add Dockerfile for Nx ReactJS
+- [ ] Add Dockerfile for Nx ReactJS Library
+- [ ] Add Dockerfile for Nx NestJS
+- [ ] Add Dockerfile for Nx NestJS Library
+- [ ] Add Kubernetes for Nx
 
 # Run Development Serve In Every Service:
 ## Apps Service
