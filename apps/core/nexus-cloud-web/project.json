@@ -55,7 +55,7 @@
         },
         "test": {
             "executor": "@nx/vite:test",
-            "outputs": ["coverage/apps/core/nexus-cloud-web"],
+            "outputs": ["{workspaceRoot}/coverage/apps/core/nexus-cloud-web"],
             "options": {
                 "passWithNoTests": true,
                 "reportsDirectory": "../../../coverage/apps/core/nexus-cloud-web"

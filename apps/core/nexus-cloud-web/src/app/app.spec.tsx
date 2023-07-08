@@ -20,6 +20,6 @@ describe('App', () => {
                 <App />
             </BrowserRouter>
         );
-        expect(getByText(/Welcome core-nexus-cloud-web/gi)).toBeTruthy();
+        expect(getByText(/Welcome payment-payment-web/gi)).toBeTruthy();
     });
 });
