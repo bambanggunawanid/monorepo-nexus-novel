@@ -54,7 +54,7 @@
         },
         "test": {
             "executor": "@nx/vite:test",
-            "outputs": ["coverage/apps/payment/payment-web"],
+            "outputs": ["{workspaceRoot}/coverage/apps/payment/payment-web"],
             "options": {
                 "passWithNoTests": true,
                 "reportsDirectory": "../../../coverage/apps/payment/payment-web"

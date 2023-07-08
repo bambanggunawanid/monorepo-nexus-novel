@@ -1,0 +1,101 @@
+{
+    "name": "payment-payment-dashboard-web",
+    "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "apps/payment/payment-dashboard-web/src",
+    "projectType": "application",
+    "targets": {
+        "build": {
+            "executor": "@nx/webpack:webpack",
+            "outputs": ["{options.outputPath}"],
+            "defaultConfiguration": "production",
+            "options": {
+                "compiler": "babel",
+                "outputPath": "dist/apps/payment/payment-dashboard-web",
+                "index": "apps/payment/payment-dashboard-web/src/index.html",
+                "baseHref": "/",
+                "main": "apps/payment/payment-dashboard-web/src/main.js",
+                "tsConfig": "apps/payment/payment-dashboard-web/tsconfig.app.json",
+                "assets": [
+                    "apps/payment/payment-dashboard-web/src/favicon.ico",
+                    "apps/payment/payment-dashboard-web/src/assets"
+                ],
+                "styles": [
+                    "apps/payment/payment-dashboard-web/src/app/index.css"
+                ],
+                "scripts": [],
+                "isolatedConfig": true,
+                "webpackConfig": "apps/payment/payment-dashboard-web/webpack.config.js",
+                "postcssConfig": "apps/payment/payment-dashboard-web/postcss.config.js"
+            },
+            "configurations": {
+                "development": {
+                    "extractLicenses": false,
+                    "optimization": false,
+                    "sourceMap": true,
+                    "vendorChunk": true
+                },
+                "production": {
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/payment/payment-dashboard-web/src/environments/environment.js",
+                            "with": "apps/payment/payment-dashboard-web/src/environments/environment.prod.js"
+                        }
+                    ],
+                    "optimization": true,
+                    "outputHashing": "all",
+                    "sourceMap": false,
+                    "namedChunks": false,
+                    "extractLicenses": true,
+                    "vendorChunk": false
+                }
+            }
+        },
+        "serve": {
+            "executor": "@nx/webpack:dev-server",
+            "defaultConfiguration": "development",
+            "options": {
+                "buildTarget": "payment-payment-dashboard-web:build",
+                "hmr": true
+            },
+            "configurations": {
+                "development": {
+                    "buildTarget": "payment-payment-dashboard-web:build:development"
+                },
+                "production": {
+                    "buildTarget": "payment-payment-dashboard-web:build:production",
+                    "hmr": false
+                }
+            }
+        },
+        "lint": {
+            "executor": "@nx/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": [
+                    "apps/payment/payment-dashboard-web/**/*.{ts,tsx,js,jsx}"
+                ]
+            }
+        },
+        "serve-static": {
+            "executor": "@nx/web:file-server",
+            "options": {
+                "buildTarget": "payment-payment-dashboard-web:build"
+            }
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "apps/payment/payment-dashboard-web/jest.config.js",
+                "passWithNoTests": true
+            },
+            "configurations": {
+                "ci": {
+                    "ci": true,
+                    "codeCoverage": true
+                }
+            }
+        }
+    },
+    "tags": []
+}
