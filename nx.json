@@ -1,57 +1,80 @@
 {
-    "tasksRunnerOptions": {
-        "default": {
-            "runner": "nx-cloud",
-            "options": {
-                "cacheableOperations": ["build", "lint", "test", "e2e"],
-                "accessToken": "NjQ1ZTA1NGMtMzk2OC00MDUzLWE0MjAtY2Y5MTA2ZTMxZTA1fHJlYWQtd3JpdGU="
-            }
-        }
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx-cloud",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ],
+        "accessToken": "NjQ1ZTA1NGMtMzk2OC00MDUzLWE0MjAtY2Y5MTA2ZTMxZTA1fHJlYWQtd3JpdGU="
+      }
+    }
+  },
+  "affected": {
+    "defaultBase": "main"
+  },
+  "targetDefaults": {
+    "test": {
+      "inputs": [
+        "default",
+        "^default",
+        "{workspaceRoot}/jest.preset.js"
+      ]
     },
-    "affected": {
-        "defaultBase": "main"
+    "lint": {
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json",
+        "{workspaceRoot}/.eslintignore"
+      ]
     },
-    "targetDefaults": {
-        "test": {
-            "inputs": ["default", "^default", "{workspaceRoot}/jest.preset.js"]
-        },
-        "lint": {
-            "inputs": [
-                "default",
-                "{workspaceRoot}/.eslintrc.json",
-                "{workspaceRoot}/.eslintignore"
-            ]
-        },
-        "build": {
-            "executor": "@nx/vite:vite",
-            "options": {
-                "generatePackageJson": true
-            }
-        }
+    "build": {
+      "executor": "@nx/vite:vite",
+      "options": {
+        "generatePackageJson": true
+      },
+      "inputs": [
+        "production",
+        "^production"
+      ]
+    }
+  },
+  "generators": {
+    "@nx/next": {
+      "application": {
+        "style": "styled-jsx",
+        "linter": "eslint"
+      }
     },
-    "generators": {
-        "@nx/react": {
-            "application": {
-                "style": "styled-jsx",
-                "linter": "eslint",
-                "bundler": "vite",
-                "babel": true
-            },
-            "component": {
-                "style": "styled-jsx"
-            },
-            "library": {
-                "style": "styled-jsx",
-                "linter": "eslint",
-                "unitTestRunner": "jest"
-            }
-        },
-        "@nx/next": {
-            "application": {
-                "style": "styled-jsx",
-                "linter": "eslint"
-            }
-        }
-    },
-    "defaultProject": "core-nexus-cloud-web"
+    "@nx/react": {
+      "application": {
+        "style": "css",
+        "linter": "eslint",
+        "bundler": "webpack",
+        "babel": true
+      },
+      "component": {
+        "style": "css"
+      },
+      "library": {
+        "style": "css",
+        "linter": "eslint"
+      }
+    }
+  },
+  "defaultProject": "core-nexus-cloud-web",
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "namedInputs": {
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
+    "sharedGlobals": [],
+    "production": [
+      "default"
+    ]
+  }
 }

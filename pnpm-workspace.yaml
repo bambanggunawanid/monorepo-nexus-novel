@@ -1,4 +1,4 @@
 packages:
-  - apps/backend/*
-  - apps/frontend/*
-  - packages/*
+  - apps/core/**
+  - apps/payment/**
+  - libs/**
