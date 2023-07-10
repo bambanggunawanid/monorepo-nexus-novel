@@ -1,48 +1,48 @@
-import React, { useState } from "react";
-import { FcGoogle } from "react-icons/fc";
-import { RiFacebookCircleFill } from "react-icons/ri";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { FcGoogle } from 'react-icons/fc';
+import { RiFacebookCircleFill } from 'react-icons/ri';
+import { useNavigate } from 'react-router-dom';
 
-import { PrimaryButton, SecondaryButton } from "../components/buttons";
-import { Checkbox, Input } from "../components/field";
-import { Link, Loader } from "../components/utils";
-import { toast } from "../helpers";
-import AuthLayout from "../layouts/AuthLayout";
+import { PrimaryButton, SecondaryButton } from '../components/buttons';
+import { Checkbox, Input } from '../components/field';
+import { Link, Loader } from '../components/utils';
+import { toast } from '../helpers';
+import AuthLayout from '../layouts/AuthLayout';
 
 const Register = () => {
     const navigate = useNavigate();
     const defaultMessage = {
         email: [],
         password: [],
-        telephone: []
+        telephone: [],
     };
 
     const [loading, setLoading] = useState(false);
-    const [telephone, setTelephone] = useState("");
+    const [telephone, setTelephone] = useState('');
     const [errorMessage, setErrorMessage] = useState(defaultMessage);
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const register = () => {
         setLoading(true);
         setTimeout(() => {
             const newErrorMessage = defaultMessage;
             if (!email) {
-                newErrorMessage.email = ["This field is required"];
+                newErrorMessage.email = ['This field is required'];
             }
             if (!password) {
-                newErrorMessage.password = ["This field is required"];
+                newErrorMessage.password = ['This field is required'];
             }
 
             if (!telephone) {
-                newErrorMessage.telephone = ["This field is required"];
+                newErrorMessage.telephone = ['This field is required'];
             }
 
             if (email && telephone && password) {
-                toast("success", "Successful registration");
-                navigate("/login");
+                toast('success', 'Successful registration');
+                navigate('/login');
             } else {
-                toast("error", "Failed registration");
+                toast('error', 'Failed registration');
             }
             setErrorMessage(defaultMessage);
             setLoading(false);
@@ -57,7 +57,9 @@ const Register = () => {
                 </>
             }
         >
-            <h3 className="text-center text-xl font-semibold text-gray-700">Create New Account</h3>
+            <h3 className="text-center text-xl font-semibold text-gray-700">
+                Create New Account
+            </h3>
             <p className="text-center text-sm mt-2 mb-10">
                 Use your remail email continue with Nioboard (it's free)!
             </p>
@@ -65,52 +67,57 @@ const Register = () => {
             <form className="space-y-5">
                 <div>
                     <Input
-                        label={"Phone number"}
+                        label={'Phone number'}
                         id="phone_number"
                         type="tel"
                         placeholder="Enter phone number"
                         value={telephone}
-                        onChange={e => setTelephone(e.target.value)}
+                        onChange={(e) => setTelephone(e.target.value)}
                         error={errorMessage.telephone}
                     />
                 </div>
 
                 <div>
                     <Input
-                        label={"Email"}
+                        label={'Email'}
                         id="email"
                         type="email"
                         placeholder="Enter email"
                         value={email}
-                        onChange={e => setEmail(e.target.value)}
+                        onChange={(e) => setEmail(e.target.value)}
                         error={errorMessage.email}
                     />
                 </div>
 
                 <div>
                     <Input
-                        label={"Password"}
+                        label={'Password'}
                         id="password"
                         type="password"
                         placeholder="Enter password"
                         value={password}
-                        onChange={e => setPassword(e.target.value)}
+                        onChange={(e) => setPassword(e.target.value)}
                         error={errorMessage.password}
                     />
                 </div>
 
                 <div>
-                    <Checkbox id="remember" label="I agree to privacy policy & terms" />
+                    <Checkbox
+                        id="remember"
+                        label="I agree to privacy policy & terms"
+                    />
                 </div>
 
                 <PrimaryButton onClick={register}>
-                    {loading && <Loader color={"white"} />}
+                    {loading && <Loader color={'white'} />}
                     <span>Sign up</span>
                 </PrimaryButton>
 
                 <div className="flex items-center justify-center space-x-3">
                     <hr className="w-12" />
-                    <span className="font-bold uppercase text-xs text-gray-400">Or</span>
+                    <span className="font-bold uppercase text-xs text-gray-400">
+                        Or
+                    </span>
                     <hr className="w-12" />
                 </div>
 

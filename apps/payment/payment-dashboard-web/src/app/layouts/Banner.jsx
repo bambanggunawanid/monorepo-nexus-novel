@@ -1,15 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-import TransferForm from "../components/TransferForm";
-import { Container } from "../components/utils";
-import { checkUser } from "../helpers";
+import TransferForm from '../components/TransferForm';
+import { Container } from '../components/utils';
+import { checkUser } from '../helpers';
 
 const Banner = () => {
     return (
         <section className="w-full overflow-hidden bg-[#f2f3f9] wow fadeInUp">
             <div
                 className="relative bg-auto bg-no-repeat bg-[top_120px_right] md:bg-[top_70px_right] lg:bg-[top_100px_right]"
-                style={{ backgroundImage: "url('assets/images/banner-map.png')" }}
+                style={{
+                    backgroundImage: "url('assets/images/banner-map.png')",
+                }}
             >
                 <div>
                     <img
@@ -50,12 +52,16 @@ const Banner = () => {
                                 <br /> Anywhere
                             </h1>
                             <p className="lg:text-xl xl:text-2xl text-indigo-900 my-8">
-                                Quickly and easily send, receive and{" "}
-                                <br className="hidden md:block xl:hidden" /> request{" "}
-                                <br className="hidden md:block hidden xl:block" /> money online with
-                                AtomPay. <br className="hidden md:block xl:hidden" /> Get a
-                                customised <br className="hidden xl:block" /> solution to fit your{" "}
-                                <br className="hidden md:block xl:hidden" /> business needs.
+                                Quickly and easily send, receive and{' '}
+                                <br className="hidden md:block xl:hidden" />{' '}
+                                request{' '}
+                                <br className="hidden md:block hidden xl:block" />{' '}
+                                money online with AtomPay.{' '}
+                                <br className="hidden md:block xl:hidden" /> Get
+                                a customised <br className="hidden xl:block" />{' '}
+                                solution to fit your{' '}
+                                <br className="hidden md:block xl:hidden" />{' '}
+                                business needs.
                             </p>
 
                             <div className="flex items-center space-x-4">

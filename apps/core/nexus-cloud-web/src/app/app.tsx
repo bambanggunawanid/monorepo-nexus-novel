@@ -18,97 +18,97 @@ const Buttons = lazy(() => import('./pages/UiElements/Buttons'));
 const DefaultLayout = lazy(() => import('./layout/DefaultLayout'));
 
 function App() {
-  const [loading, setLoading] = useState<boolean>(true);
+    const [loading, setLoading] = useState<boolean>(true);
 
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 1000);
-  }, []);
+    useEffect(() => {
+        setTimeout(() => setLoading(false), 1000);
+    }, []);
 
-  return loading ? (
-    <Loader />
-  ) : (
-    <div>
-      <Routes>
-        <Route path="/auth/signin" element={<SignIn />} />
-        <Route path="/auth/signup" element={<SignUp />} />
-        <Route element={<DefaultLayout />}>
-          <Route index element={<ECommerce />} />
-          <Route
-            path="/calendar"
-            element={
-              <Suspense fallback={<Loader />}>
-                <Calendar />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <Suspense fallback={<Loader />}>
-                <Profile />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/forms/form-elements"
-            element={
-              <Suspense fallback={<Loader />}>
-                <FormElements />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/forms/form-layout"
-            element={
-              <Suspense fallback={<Loader />}>
-                <FormLayout />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/tables"
-            element={
-              <Suspense fallback={<Loader />}>
-                <Tables />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/settings"
-            element={
-              <Suspense fallback={<Loader />}>
-                <Settings />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/chart"
-            element={
-              <Suspense fallback={<Loader />}>
-                <Chart />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/ui/alerts"
-            element={
-              <Suspense fallback={<Loader />}>
-                <Alerts />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/ui/buttons"
-            element={
-              <Suspense fallback={<Loader />}>
-                <Buttons />
-              </Suspense>
-            }
-          />
-        </Route>
-      </Routes>
-    </div>
-  );
+    return loading ? (
+        <Loader />
+    ) : (
+        <div>
+            <Routes>
+                <Route path="/auth/signin" element={<SignIn />} />
+                <Route path="/auth/signup" element={<SignUp />} />
+                <Route element={<DefaultLayout />}>
+                    <Route index element={<ECommerce />} />
+                    <Route
+                        path="/calendar"
+                        element={
+                            <Suspense fallback={<Loader />}>
+                                <Calendar />
+                            </Suspense>
+                        }
+                    />
+                    <Route
+                        path="/profile"
+                        element={
+                            <Suspense fallback={<Loader />}>
+                                <Profile />
+                            </Suspense>
+                        }
+                    />
+                    <Route
+                        path="/forms/form-elements"
+                        element={
+                            <Suspense fallback={<Loader />}>
+                                <FormElements />
+                            </Suspense>
+                        }
+                    />
+                    <Route
+                        path="/forms/form-layout"
+                        element={
+                            <Suspense fallback={<Loader />}>
+                                <FormLayout />
+                            </Suspense>
+                        }
+                    />
+                    <Route
+                        path="/tables"
+                        element={
+                            <Suspense fallback={<Loader />}>
+                                <Tables />
+                            </Suspense>
+                        }
+                    />
+                    <Route
+                        path="/settings"
+                        element={
+                            <Suspense fallback={<Loader />}>
+                                <Settings />
+                            </Suspense>
+                        }
+                    />
+                    <Route
+                        path="/chart"
+                        element={
+                            <Suspense fallback={<Loader />}>
+                                <Chart />
+                            </Suspense>
+                        }
+                    />
+                    <Route
+                        path="/ui/alerts"
+                        element={
+                            <Suspense fallback={<Loader />}>
+                                <Alerts />
+                            </Suspense>
+                        }
+                    />
+                    <Route
+                        path="/ui/buttons"
+                        element={
+                            <Suspense fallback={<Loader />}>
+                                <Buttons />
+                            </Suspense>
+                        }
+                    />
+                </Route>
+            </Routes>
+        </div>
+    );
 }
 
 export default App;
