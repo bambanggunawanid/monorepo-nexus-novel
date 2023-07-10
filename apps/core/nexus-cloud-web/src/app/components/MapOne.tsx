@@ -1,10 +1,11 @@
 import jsVectorMap from 'jsvectormap';
 import 'jsvectormap/dist/css/jsvectormap.css';
 import { useEffect } from 'react';
-import '../js/us-aea-en';
+// import '../js/us-aea-en';
 
 const MapOne = () => {
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const mapOne = new jsVectorMap({
       selector: '#mapOne',
       map: 'us_aea_en',
@@ -32,7 +33,7 @@ const MapOne = () => {
 
       labels: {
         regions: {
-          render(code) {
+          render(code: string) {
             return code.split('-')[1];
           },
         },

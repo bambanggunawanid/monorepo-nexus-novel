@@ -12,7 +12,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const location = useLocation();
   const { pathname } = location;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const trigger = useRef<any>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const sidebar = useRef<any>(null);
 
   const storedSidebarExpanded = localStorage.getItem('sidebar-expanded');

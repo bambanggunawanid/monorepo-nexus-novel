@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 const DropdownNotification = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const trigger = useRef<any>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const dropdown = useRef<any>(null);
 
   useEffect(() => {

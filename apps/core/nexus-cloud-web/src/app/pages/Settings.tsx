@@ -3,7 +3,7 @@ import userThree from '../images/user/user-03.png';
 
 const Settings = () => {
   return (
-    <>
+    <div>
       <div className="mx-auto max-w-270">
         <Breadcrumb pageName="Settings" />
 
@@ -304,7 +304,7 @@ const Settings = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

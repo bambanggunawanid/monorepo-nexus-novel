@@ -9,7 +9,9 @@ import UserFour from '../images/user/user-04.png';
 const DropdownMessage = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const trigger = useRef<any>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const dropdown = useRef<any>(null);
 
   // close on click outside
@@ -104,7 +106,7 @@ const DropdownMessage = () => {
                 <h6 className="text-sm font-medium text-black dark:text-white">
                   Mariya Desoja
                 </h6>
-                <p className="text-sm">I like your confidence 💪</p>
+                <p className="text-sm">I like your confidence <span role='img' aria-label='Muscle' >💪</span> </p>
                 <p className="text-xs">2min ago</p>
               </div>
             </Link>
@@ -176,7 +178,7 @@ const DropdownMessage = () => {
                 <h6 className="text-sm font-medium text-black dark:text-white">
                   Mariya Desoja
                 </h6>
-                <p className="text-sm">I like your confidence 💪</p>
+                <p className="text-sm">I like your confidence <span role='img' aria-label='Muscle'>💪</span></p>
                 <p className="text-xs">2min ago</p>
               </div>
             </Link>

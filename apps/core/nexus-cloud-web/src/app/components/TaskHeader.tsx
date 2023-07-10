@@ -7,7 +7,9 @@ import userTen from '../images/user/user-10.png';
 const TaskHeader = () => {
   const [popupOpen, setPopupOpen] = useState(false);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const trigger = useRef<any>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const popup = useRef<any>(null);
 
   // close on click outside

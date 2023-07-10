@@ -177,7 +177,7 @@ const FormLayout = () => {
                     <p>Remember me</p>
                   </label>
 
-                  <a href="#" className="text-sm text-primary">
+                  <a href="/forget-password" className="text-sm text-primary">
                     Forget password?
                   </a>
                 </div>
