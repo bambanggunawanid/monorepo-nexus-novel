@@ -84,3 +84,6 @@ nx test api-core-nexus-admin-storage-nexus-cloud-storage
 nx test api-payment-payment-admin-pay-backup-payment-backup
 nx test api-payment-payment-admin-pay-hub-payment-info
 ```
+
+## Architecture Reference
+https://dev.to/this-is-learning/semantic-grouping-folders-with-nx-3467
