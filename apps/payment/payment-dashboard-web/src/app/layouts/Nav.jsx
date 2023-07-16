@@ -1,16 +1,16 @@
-import { Menu, Transition } from "@headlessui/react";
-import { Fragment } from "react";
-import { AiOutlineDashboard } from "react-icons/ai";
-import { HiMenu } from "react-icons/hi";
-import { HiBeaker } from "react-icons/hi2";
-import { Link, useNavigate } from "react-router-dom";
+import { Menu, Transition } from '@headlessui/react';
+import { Fragment } from 'react';
+import { AiOutlineDashboard } from 'react-icons/ai';
+import { HiMenu } from 'react-icons/hi';
+import { HiBeaker } from 'react-icons/hi2';
+import { Link, useNavigate } from 'react-router-dom';
 
-import { Container } from "../components/utils";
-import { checkUser, logout } from "../helpers";
+import { Container } from '../components/utils';
+import { checkUser, logout } from '../helpers';
 
 const Nav = () => {
     const navigate = useNavigate();
-    const handleClick = e => {
+    const handleClick = (e) => {
         e.preventDefault();
         logout(navigate);
         setTimeout(() => {
@@ -88,7 +88,7 @@ const Nav = () => {
                                     <div className="absolute right-0 z-10 w-48 px-2 py-1 mt-1 text-gray-600 bg-white border rounded-md shadow">
                                         <Menu.Item>
                                             <Link
-                                                to={"/dashboard"}
+                                                to={'/dashboard'}
                                                 className="flex items-center space-x-3 px-3 py-2.5 text-sm hover:text-purple-500"
                                             >
                                                 <AiOutlineDashboard className="h-5 w-5" />
@@ -99,7 +99,7 @@ const Nav = () => {
 
                                         <Menu.Item>
                                             <Link
-                                                to={"#profile"}
+                                                to={'#profile'}
                                                 className="flex items-center space-x-3 px-3 py-2.5 text-sm hover:text-purple-500"
                                             >
                                                 <svg
@@ -123,7 +123,7 @@ const Nav = () => {
 
                                         <Menu.Item>
                                             <a
-                                                href={"/logout"}
+                                                href={'/logout'}
                                                 className="flex items-center space-x-3 px-3 py-2.5 text-sm hover:text-purple-500"
                                                 onClick={handleClick}
                                             >
@@ -169,7 +169,10 @@ const Nav = () => {
 
                 {!checkUser() && (
                     <div className="md:hidden relative">
-                        <Menu as="div" className="relative inline-block text-left">
+                        <Menu
+                            as="div"
+                            className="relative inline-block text-left"
+                        >
                             <Menu.Button className="inline-flex w-full justify-center rounded-md bg-indigo-600 p-2 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                                 <HiMenu className="h-7 w-7" />
                             </Menu.Button>

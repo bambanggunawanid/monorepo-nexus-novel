@@ -1,53 +1,63 @@
-import React, { useState } from "react";
-import { FcGoogle } from "react-icons/fc";
-import { RiFacebookCircleFill } from "react-icons/ri";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { FcGoogle } from 'react-icons/fc';
+import { RiFacebookCircleFill } from 'react-icons/ri';
+import { useNavigate } from 'react-router-dom';
 
-import { PrimaryButton, SecondaryButton } from "../components/buttons";
-import { Checkbox, Input } from "../components/field";
-import { Link, Loader } from "../components/utils";
-import config from "../config";
-import { toast } from "../helpers";
-import AuthLayout from "../layouts/AuthLayout";
+import { PrimaryButton, SecondaryButton } from '../components/buttons';
+import { Checkbox, Input } from '../components/field';
+import { Link, Loader } from '../components/utils';
+import config from '../config';
+import { toast } from '../helpers';
+import AuthLayout from '../layouts/AuthLayout';
 
 const Login = () => {
     const navigate = useNavigate();
     const defaultMessage = {
         email: [],
-        password: []
+        password: [],
     };
 
     const [loading, setLoading] = useState(false);
     const [invalid, setInvalid] = useState(false);
     const [errorMessage, setErrorMessage] = useState(defaultMessage);
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const login = () => {
         setLoading(true);
         setTimeout(() => {
             const newErrorMessage = defaultMessage;
             if (!email) {
-                newErrorMessage.email = ["This field is required"];
+                newErrorMessage.email = ['This field is required'];
             }
             if (!password) {
-                newErrorMessage.password = ["This field is required"];
+                newErrorMessage.password = ['This field is required'];
             }
 
             if (
-                email === (process.env.REACT_APP_LOGIN || "paydunya@gmail.com") &&
-                password === (process.env.REACT_APP_PASSWORD || "12345")
+                email ===
+                    (process.env.REACT_APP_LOGIN || 'paydunya@gmail.com') &&
+                password === (process.env.REACT_APP_PASSWORD || '12345')
             ) {
                 setInvalid(true);
-                toast("success", "Successful connection");
-                config.AUTH.DRIVER.setItem("user", {
-                    name: "Paydunya",
-                    permissions: ["reload-account", "dashboard", "transfer-money"]
+                toast('success', 'Successful connection');
+                config.AUTH.DRIVER.setItem('user', {
+                    name: 'Paydunya',
+                    permissions: [
+                        'reload-account',
+                        'dashboard',
+                        'transfer-money',
+                    ],
                 });
                 navigate(config.AUTH.REDIRECT_LOGIN);
             }
 
-            if (!email || !password || email !== "paydunya@gmail.com" || password !== "12345") {
+            if (
+                !email ||
+                !password ||
+                email !== 'paydunya@gmail.com' ||
+                password !== '12345'
+            ) {
                 if (
                     email !== process.env.REACT_APP_LOGIN ||
                     password !== process.env.REACT_APP_PASSWORD
@@ -56,7 +66,7 @@ const Login = () => {
                 } else {
                     setInvalid(false);
                 }
-                toast("error", "Connection failed");
+                toast('error', 'Connection failed');
             }
 
             setErrorMessage(newErrorMessage);
@@ -72,7 +82,9 @@ const Login = () => {
                 </>
             }
         >
-            <h3 className="text-center text-xl font-semibold text-gray-700">Login to Account</h3>
+            <h3 className="text-center text-xl font-semibold text-gray-700">
+                Login to Account
+            </h3>
             <p className="text-center text-sm mt-2 mb-10">
                 Please sign-in to your account and start the adventure.
             </p>
@@ -86,24 +98,24 @@ const Login = () => {
             <form className="space-y-5">
                 <div>
                     <Input
-                        label={"Email"}
+                        label={'Email'}
                         id="email"
                         type="email"
                         placeholder="Enter email"
                         value={email}
-                        onChange={e => setEmail(e.target.value)}
+                        onChange={(e) => setEmail(e.target.value)}
                         error={errorMessage.email}
                     />
                 </div>
 
                 <div>
                     <Input
-                        label={"Password"}
+                        label={'Password'}
                         id="password"
                         type="password"
                         placeholder="Enter password"
                         value={password}
-                        onChange={e => setPassword(e.target.value)}
+                        onChange={(e) => setPassword(e.target.value)}
                         error={errorMessage.password}
                     />
                 </div>
@@ -115,13 +127,15 @@ const Login = () => {
                 </div>
 
                 <PrimaryButton onClick={login} disabled={loading}>
-                    {loading && <Loader color={"white"} />}
+                    {loading && <Loader color={'white'} />}
                     <span>Login to account</span>
                 </PrimaryButton>
 
                 <div className="flex items-center justify-center space-x-3">
                     <hr className="w-12" />
-                    <span className="font-bold uppercase text-xs text-gray-400">Or</span>
+                    <span className="font-bold uppercase text-xs text-gray-400">
+                        Or
+                    </span>
                     <hr className="w-12" />
                 </div>
 
@@ -144,7 +158,8 @@ const Login = () => {
                 </div>
 
                 <p className="text-sm text-center">
-                    Don't have an account? <Link href="/register">Register</Link>
+                    Don't have an account?{' '}
+                    <Link href="/register">Register</Link>
                 </p>
             </form>
         </AuthLayout>

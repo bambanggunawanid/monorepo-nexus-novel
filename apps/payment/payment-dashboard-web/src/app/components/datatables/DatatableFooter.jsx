@@ -1,11 +1,17 @@
-import React, { useMemo } from "react";
-import styled from "styled-components";
+import React, { useMemo } from 'react';
+import styled from 'styled-components';
 
-import { scrollTop } from "../../helpers";
+import { scrollTop } from '../../helpers';
 
-const DatatableFooter = ({ currentPage = 0, totalPage = 0, next, previous, gotoPage }) => {
+const DatatableFooter = ({
+    currentPage = 0,
+    totalPage = 0,
+    next,
+    previous,
+    gotoPage,
+}) => {
     const scrollToPagination = () => {
-        document.getElementById("table_pagination").scrollIntoView();
+        document.getElementById('table_pagination').scrollIntoView();
         scrollTop();
     };
 
@@ -19,18 +25,18 @@ const DatatableFooter = ({ currentPage = 0, totalPage = 0, next, previous, gotoP
         scrollToPagination();
     };
 
-    const onGotoPage = async item => {
+    const onGotoPage = async (item) => {
         await gotoPage(item);
         scrollToPagination();
     };
 
     const active =
-        "px-3 py-1.5 bg-indigo-600 font-medium rounded-md text-sm text-white hover:outline-none focus:outline-none hover:bg-indigo-700";
+        'px-3 py-1.5 bg-indigo-600 font-medium rounded-md text-sm text-white hover:outline-none focus:outline-none hover:bg-indigo-700';
     const notActive =
-        "px-3 py-1.5 text-gray-600 font-medium hover:text-indigo-500 hover:bg-indigo-100 rounded-md text-sm hover:outline-none focus:outline-none";
+        'px-3 py-1.5 text-gray-600 font-medium hover:text-indigo-500 hover:bg-indigo-100 rounded-md text-sm hover:outline-none focus:outline-none';
     const buttonHover =
-        "w-8 h-8 text-gray-500 px-1 py-0.5 rounded-md hover:bg-indigo-100 hover:text-indigo-500";
-    const buttonNotHover = "w-8 h-8 text-gray-300  px-1 py-0.5";
+        'w-8 h-8 text-gray-500 px-1 py-0.5 rounded-md hover:bg-indigo-100 hover:text-indigo-500';
+    const buttonNotHover = 'w-8 h-8 text-gray-300  px-1 py-0.5';
 
     const pages = useMemo(() => {
         let result = [];
@@ -51,7 +57,9 @@ const DatatableFooter = ({ currentPage = 0, totalPage = 0, next, previous, gotoP
     const previousCurrent = pages[pages.indexOf(currentPage) - 1];
     const nextCurrent = pages[pages.indexOf(currentPage) + 1];
     const centerPages =
-        previousCurrent && nextCurrent ? [previousCurrent, currentPage, nextCurrent] : [];
+        previousCurrent && nextCurrent
+            ? [previousCurrent, currentPage, nextCurrent]
+            : [];
     const showFirstNextPages = currentPage <= 4;
     const showLastPreviousPages = currentPage >= lastPreviousPages[1];
 
@@ -64,13 +72,15 @@ const DatatableFooter = ({ currentPage = 0, totalPage = 0, next, previous, gotoP
             <div className="flex items-center space-x-2">
                 <button
                     className={`hover:outline-none focus:outline-none ${
-                        currentPage === 1 ? "cursor-not-allowed" : ""
+                        currentPage === 1 ? 'cursor-not-allowed' : ''
                     }`}
                     disabled={currentPage === 1}
                     onClick={onPrevious}
                 >
                     <svg
-                        className={currentPage === 1 ? buttonNotHover : buttonHover}
+                        className={
+                            currentPage === 1 ? buttonNotHover : buttonHover
+                        }
                         fill="currentColor"
                         viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +97,9 @@ const DatatableFooter = ({ currentPage = 0, totalPage = 0, next, previous, gotoP
                     pages.map((item, index) => (
                         <button
                             key={index}
-                            className={item === currentPage ? active : notActive}
+                            className={
+                                item === currentPage ? active : notActive
+                            }
                             onClick={() => onGotoPage(item)}
                         >
                             {item}
@@ -97,7 +109,9 @@ const DatatableFooter = ({ currentPage = 0, totalPage = 0, next, previous, gotoP
                 {pagesLength >= 8 && (
                     <>
                         <button
-                            className={firstPage === currentPage ? active : notActive}
+                            className={
+                                firstPage === currentPage ? active : notActive
+                            }
                             onClick={() => onGotoPage(firstPage)}
                         >
                             {firstPage}
@@ -107,7 +121,11 @@ const DatatableFooter = ({ currentPage = 0, totalPage = 0, next, previous, gotoP
                             firstNextPages.map((item, index) => (
                                 <button
                                     key={index}
-                                    className={item === currentPage ? active : notActive}
+                                    className={
+                                        item === currentPage
+                                            ? active
+                                            : notActive
+                                    }
                                     onClick={() => onGotoPage(item)}
                                 >
                                     {item}
@@ -125,7 +143,11 @@ const DatatableFooter = ({ currentPage = 0, totalPage = 0, next, previous, gotoP
                             centerPages.map((item, index) => (
                                 <button
                                     key={index}
-                                    className={item === currentPage ? active : notActive}
+                                    className={
+                                        item === currentPage
+                                            ? active
+                                            : notActive
+                                    }
                                     onClick={() => onGotoPage(item)}
                                 >
                                     {item}
@@ -142,7 +164,11 @@ const DatatableFooter = ({ currentPage = 0, totalPage = 0, next, previous, gotoP
                             lastPreviousPages.map((item, index) => (
                                 <button
                                     key={index}
-                                    className={item === currentPage ? active : notActive}
+                                    className={
+                                        item === currentPage
+                                            ? active
+                                            : notActive
+                                    }
                                     onClick={() => onGotoPage(item)}
                                 >
                                     {item}
@@ -150,7 +176,9 @@ const DatatableFooter = ({ currentPage = 0, totalPage = 0, next, previous, gotoP
                             ))}
 
                         <button
-                            className={lastPage === currentPage ? active : notActive}
+                            className={
+                                lastPage === currentPage ? active : notActive
+                            }
                             onClick={() => onGotoPage(lastPage)}
                         >
                             {lastPage}
@@ -160,7 +188,9 @@ const DatatableFooter = ({ currentPage = 0, totalPage = 0, next, previous, gotoP
 
                 <button
                     className={`hover:outline-none focus:outline-none ${
-                        currentPage === totalPage || totalPage === 0 ? "cursor-not-allowed" : ""
+                        currentPage === totalPage || totalPage === 0
+                            ? 'cursor-not-allowed'
+                            : ''
                     }`}
                     disabled={currentPage === totalPage || totalPage === 0}
                     onClick={onNext}
@@ -190,9 +220,10 @@ const DatatableFooter = ({ currentPage = 0, totalPage = 0, next, previous, gotoP
 export default DatatableFooter;
 
 const Container = styled.div.attrs(() => ({
-    className: "p-5 flex items-center justify-between"
+    className: 'p-5 flex items-center justify-between',
 }))``;
 
 const ShowingInfo = styled.div.attrs(() => ({
-    className: "inline-block px-6 py-2 text-sm tracking-wide text-indigo-400 border rounded-md"
+    className:
+        'inline-block px-6 py-2 text-sm tracking-wide text-indigo-400 border rounded-md',
 }))``;

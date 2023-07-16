@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { formatToCurrency, toast } from "../helpers";
+import { formatToCurrency, toast } from '../helpers';
 
-import { Button } from "./buttons";
-import { Input } from "./field";
-import ModalBody from "./modal/ModalBody";
-import ModalContainer from "./modal/ModalContainer";
-import ModalFooter from "./modal/ModalFooter";
-import ModalTitle from "./modal/ModalTitle";
-import { Loader } from "./utils";
+import { Button } from './buttons';
+import { Input } from './field';
+import ModalBody from './modal/ModalBody';
+import ModalContainer from './modal/ModalContainer';
+import ModalFooter from './modal/ModalFooter';
+import ModalTitle from './modal/ModalTitle';
+import { Loader } from './utils';
 
 const ReloadAccountForm = ({
     loadData,
@@ -16,10 +16,10 @@ const ReloadAccountForm = ({
     setIsOpen,
     type = null,
     resetType,
-    balance = 10000
+    balance = 10000,
 }) => {
     const [validationMessage, setValidationMessage] = useState([]);
-    const [amount, setAmount] = useState("");
+    const [amount, setAmount] = useState('');
     const [loading, setLoading] = useState(false);
 
     const onSubmit = () => {
@@ -29,22 +29,22 @@ const ReloadAccountForm = ({
             setLoading(false);
             if (amount) {
                 if (amount > 10000) {
-                    toast("error", "Failed to reload account");
+                    toast('error', 'Failed to reload account');
                     setValidationMessage([
                         `This amount cannot exceed your balance which is ${formatToCurrency(
                             balance
-                        )}`
+                        )}`,
                     ]);
                 } else {
-                    toast("success", "Successful account reloading");
+                    toast('success', 'Successful account reloading');
                     loadData(amount);
-                    setAmount("");
+                    setAmount('');
                     setValidationMessage([]);
                     setIsOpen(false);
                 }
             } else {
-                toast("error", "Failed to reload account");
-                setValidationMessage(["This field is required"]);
+                toast('error', 'Failed to reload account');
+                setValidationMessage(['This field is required']);
             }
         }, 3000);
     };
@@ -55,26 +55,26 @@ const ReloadAccountForm = ({
 
             <ModalBody>
                 <Input
-                    id={"label"}
+                    id={'label'}
                     type="number"
-                    label={"Amount"}
+                    label={'Amount'}
                     value={amount}
-                    onChange={e => {
+                    onChange={(e) => {
                         setAmount(e.target.value);
                     }}
-                    placeholder={"Please enter the amount"}
+                    placeholder={'Please enter the amount'}
                     error={validationMessage}
                 />
             </ModalBody>
 
             <ModalFooter>
                 <Button
-                    color={"secondary"}
+                    color={'secondary'}
                     disabled={loading}
                     onClick={() => {
                         setIsOpen(false);
                         setValidationMessage([]);
-                        setAmount("");
+                        setAmount('');
                         setTimeout(() => {
                             if (type !== null) {
                                 resetType();
@@ -85,9 +85,9 @@ const ReloadAccountForm = ({
                     Close
                 </Button>
 
-                <Button color={"primary"} disabled={loading} onClick={onSubmit}>
-                    {loading && <Loader color={"white"} />}
-                    <span>{type === null ? "Reload" : "Update"}</span>
+                <Button color={'primary'} disabled={loading} onClick={onSubmit}>
+                    {loading && <Loader color={'white'} />}
+                    <span>{type === null ? 'Reload' : 'Update'}</span>
                 </Button>
             </ModalFooter>
         </ModalContainer>

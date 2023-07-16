@@ -1,21 +1,21 @@
-import PerfectScrollbar from "perfect-scrollbar";
-import { useEffect } from "react";
+import PerfectScrollbar from 'perfect-scrollbar';
+import { useEffect } from 'react';
 
-import { PageAnimation } from "../components/utils";
+import { PageAnimation } from '../components/utils';
 
-import AdminFooter from "./AdminFooter";
-import AdminNav from "./AdminNav";
-import Navigation from "./Navigation";
-import Sidebar from "./Sidebar";
+import AdminFooter from './AdminFooter';
+import AdminNav from './AdminNav';
+import Navigation from './Navigation';
+import Sidebar from './Sidebar';
 
-const AdminLayout = props => {
+const AdminLayout = (props) => {
     useEffect(() => {
-        const demo = document.querySelector("#scroll-bar", {
+        const demo = document.querySelector('#scroll-bar', {
             wheelSpeed: 0.5,
             swipeEasing: !0,
             minScrollbarLength: 40,
             maxScrollbarLength: 100,
-            suppressScrollY: true
+            suppressScrollY: true,
         });
         new PerfectScrollbar(demo);
     }, []);
@@ -31,7 +31,10 @@ const AdminLayout = props => {
             <div className="fixed top-0 z-10 w-full h-12 mt-24 bg-gradient-to-b from-gray-200" />
 
             <div className="fixed z-0 w-0 h-screen pt-24 overflow-hidden transition-all duration-500 border-r lg:w-1/6">
-                <div id="scroll-bar" className="h-full relative px-4 pt-7 mt-1.5 pb-8">
+                <div
+                    id="scroll-bar"
+                    className="h-full relative px-4 pt-7 mt-1.5 pb-8"
+                >
                     <Sidebar />
                 </div>
             </div>

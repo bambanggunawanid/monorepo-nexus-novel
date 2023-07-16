@@ -1,8 +1,8 @@
 try {
-    window.moment = require("moment");
+    window.moment = require('moment');
     // moment.locale('fr');
 
-    window.Swal = require("sweetalert2");
+    window.Swal = require('sweetalert2');
 } catch (e) {
     /* empty */
 }

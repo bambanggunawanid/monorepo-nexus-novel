@@ -1,30 +1,30 @@
-import { Menu } from "@headlessui/react";
-import { css, StyleSheet } from "aphrodite";
-import React, { useState, useEffect, useMemo, useCallback } from "react";
-import { NavLink } from "react-router-dom";
-import styled from "styled-components";
+import { Menu } from '@headlessui/react';
+import { css, StyleSheet } from 'aphrodite';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 
-import { confirmAlert } from "../../helpers";
-import { Loader } from "../utils";
+import { confirmAlert } from '../../helpers';
+import { Loader } from '../utils';
 
-import DatatableFooter from "./DatatableFooter";
-import DatatableHead from "./DatatableHead";
-import TableHead from "./TableHead";
+import DatatableFooter from './DatatableFooter';
+import DatatableHead from './DatatableHead';
+import TableHead from './TableHead';
 
 const styles = StyleSheet.create({
     fadeInDown: {
         animationName: {
             from: {
                 opacity: 0,
-                transform: "translate3d(0, -20px, 0)"
+                transform: 'translate3d(0, -20px, 0)',
             },
             to: {
                 opacity: 1,
-                transform: "none"
-            }
+                transform: 'none',
+            },
         },
-        animationDuration: "0.3s"
-    }
+        animationDuration: '0.3s',
+    },
 });
 
 const Datatable = ({
@@ -42,11 +42,11 @@ const Datatable = ({
     deleteButton = null,
     generateButton = null,
     loading = false,
-    confirmButtonText = "Yes, delete!",
+    confirmButtonText = 'Yes, delete!',
     loadDataBySearch = null,
-    statusData = null
+    statusData = null,
 }) => {
-    const [searchValue, setSearchValue] = useState("");
+    const [searchValue, setSearchValue] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [numberPerPage, setNumberPerPage] = useState(10);
     const [data, setData] = useState(list);
@@ -55,17 +55,17 @@ const Datatable = ({
 
     useEffect(() => {
         if (paginateData) {
-            setCurrentPage(paginateData["current_page"]);
-            setNumberPerPage(paginateData["per_page"]);
+            setCurrentPage(paginateData['current_page']);
+            setNumberPerPage(paginateData['per_page']);
         }
     }, [paginateData]);
 
     useEffect(() => {
         setData(
-            list.map(item => {
+            list.map((item) => {
                 return {
                     ...item,
-                    checked: false
+                    checked: false,
                 };
             })
         );
@@ -76,18 +76,18 @@ const Datatable = ({
         if (check) {
             setCheck(false);
         }
-        setData(d =>
-            d.map(item => {
+        setData((d) =>
+            d.map((item) => {
                 return {
                     ...item,
-                    checked: false
+                    checked: false,
                 };
             })
         );
     }, [check]);
 
     const sortFilterResult = useCallback(
-        filterResult => {
+        (filterResult) => {
             if (sort === null) {
                 return filterResult;
             }
@@ -96,7 +96,7 @@ const Datatable = ({
                 if (item !== null) {
                     sortValue = {
                         index: index,
-                        value: item
+                        value: item,
                     };
                 }
             });
@@ -107,19 +107,19 @@ const Datatable = ({
 
             return filterResult.sort((a, b) => {
                 const firstText = a[dataProperty[sortValue.index]].text
-                    ? a[dataProperty[sortValue.index]].text + ""
-                    : "";
+                    ? a[dataProperty[sortValue.index]].text + ''
+                    : '';
                 const secondText = b[dataProperty[sortValue.index]].text
-                    ? b[dataProperty[sortValue.index]].text + ""
-                    : "";
-                if (sortValue.value === "asc") {
+                    ? b[dataProperty[sortValue.index]].text + ''
+                    : '';
+                if (sortValue.value === 'asc') {
                     if (firstText.toLowerCase() < secondText.toLowerCase()) {
                         return -1;
                     }
                     if (firstText.toLowerCase() > secondText.toLowerCase()) {
                         return 1;
                     }
-                } else if (sortValue.value === "desc") {
+                } else if (sortValue.value === 'desc') {
                     if (firstText.toLowerCase() > secondText.toLowerCase()) {
                         return -1;
                     }
@@ -138,18 +138,26 @@ const Datatable = ({
         const endIndex = (currentPage - 1) * numberPerPage + numberPerPage;
         if (searchValue.length && paginateData === null) {
             const result = data
-                .filter(item => {
+                .filter((item) => {
                     let found = false;
-                    dataProperty.forEach(property => {
-                        const text = item[property].text ? item[property].text + "" : "";
-                        found = found || text.toLowerCase().indexOf(searchValue.toLowerCase()) > -1;
+                    dataProperty.forEach((property) => {
+                        const text = item[property].text
+                            ? item[property].text + ''
+                            : '';
+                        found =
+                            found ||
+                            text
+                                .toLowerCase()
+                                .indexOf(searchValue.toLowerCase()) > -1;
                     });
                     return found;
                 })
                 .slice(startIndex, endIndex);
             return sortFilterResult(result);
         }
-        return sortFilterResult(paginateData ? data : data.slice(startIndex, endIndex));
+        return sortFilterResult(
+            paginateData ? data : data.slice(startIndex, endIndex)
+        );
     }, [
         currentPage,
         numberPerPage,
@@ -157,15 +165,17 @@ const Datatable = ({
         data,
         dataProperty,
         sortFilterResult,
-        paginateData
+        paginateData,
     ]);
 
     const totalPage = useMemo(() => {
-        return paginateData ? paginateData["last_page"] : Math.ceil(data.length / numberPerPage);
+        return paginateData
+            ? paginateData['last_page']
+            : Math.ceil(data.length / numberPerPage);
     }, [data, numberPerPage, paginateData]);
 
     const searchFirstElementPageNumber = useCallback(
-        newPerPage => {
+        (newPerPage) => {
             if (searchValue.length || data.length === 0) return 1;
             const totalPage = Math.ceil(data.length / newPerPage);
             const firstElement = showData[0];
@@ -190,12 +200,14 @@ const Datatable = ({
     );
 
     const handlePerPageChange = useCallback(
-        value => {
+        (value) => {
             if (value !== numberPerPage) {
                 if (paginateData && loadData) {
                     loadData(parseInt(value), 1, null, true, searchValue);
                 } else {
-                    setCurrentPage(searchFirstElementPageNumber(parseInt(value)));
+                    setCurrentPage(
+                        searchFirstElementPageNumber(parseInt(value))
+                    );
                 }
                 setNumberPerPage(parseInt(value));
                 resetCheck();
@@ -207,21 +219,21 @@ const Datatable = ({
             paginateData,
             resetCheck,
             searchFirstElementPageNumber,
-            searchValue
+            searchValue,
         ]
     );
 
-    const sortData = indexSort => {
-        setSort(s =>
+    const sortData = (indexSort) => {
+        setSort((s) =>
             s.map((item, index) => {
                 if (index === indexSort) {
                     switch (item) {
-                        case "asc":
-                            return "desc";
-                        case "desc":
-                            return "asc";
+                        case 'asc':
+                            return 'desc';
+                        case 'desc':
+                            return 'asc';
                         default:
-                            return "asc";
+                            return 'asc';
                     }
                 }
                 return null;
@@ -236,9 +248,16 @@ const Datatable = ({
     const nextPage = useCallback(() => {
         if (currentPage !== totalPage) {
             if (paginateData && loadData) {
-                loadData(numberPerPage, currentPage + 1, null, true, searchValue, statusData);
+                loadData(
+                    numberPerPage,
+                    currentPage + 1,
+                    null,
+                    true,
+                    searchValue,
+                    statusData
+                );
             }
-            setCurrentPage(c => c + 1);
+            setCurrentPage((c) => c + 1);
             resetCheck();
         }
     }, [
@@ -249,41 +268,71 @@ const Datatable = ({
         resetCheck,
         searchValue,
         statusData,
-        totalPage
+        totalPage,
     ]);
 
     const previousPage = useCallback(() => {
         if (currentPage !== 1) {
             if (paginateData && loadData) {
-                loadData(numberPerPage, currentPage - 1, null, true, searchValue, statusData);
+                loadData(
+                    numberPerPage,
+                    currentPage - 1,
+                    null,
+                    true,
+                    searchValue,
+                    statusData
+                );
             }
-            setCurrentPage(c => c - 1);
+            setCurrentPage((c) => c - 1);
             resetCheck();
         }
-    }, [currentPage, loadData, numberPerPage, paginateData, resetCheck, searchValue, statusData]);
+    }, [
+        currentPage,
+        loadData,
+        numberPerPage,
+        paginateData,
+        resetCheck,
+        searchValue,
+        statusData,
+    ]);
 
     const gotoPage = useCallback(
-        number => {
+        (number) => {
             if (number !== currentPage) {
                 if (paginateData && loadData) {
-                    loadData(numberPerPage, number, null, true, searchValue, statusData);
+                    loadData(
+                        numberPerPage,
+                        number,
+                        null,
+                        true,
+                        searchValue,
+                        statusData
+                    );
                 }
                 setCurrentPage(number);
                 resetCheck();
             }
         },
-        [currentPage, loadData, numberPerPage, paginateData, resetCheck, searchValue, statusData]
+        [
+            currentPage,
+            loadData,
+            numberPerPage,
+            paginateData,
+            resetCheck,
+            searchValue,
+            statusData,
+        ]
     );
 
     const changeCheckValue = useCallback(
-        value => {
-            const currentPageDataIds = showData.map(item => item.id);
-            setData(d =>
-                d.map(item => {
+        (value) => {
+            const currentPageDataIds = showData.map((item) => item.id);
+            setData((d) =>
+                d.map((item) => {
                     if (currentPageDataIds.includes(item.id)) {
                         return {
                             ...item,
-                            checked: value
+                            checked: value,
                         };
                     }
                     return item;
@@ -295,11 +344,11 @@ const Datatable = ({
     );
 
     const checkItem = useCallback((value, itemId) => {
-        setData(d =>
-            d.map(item => {
+        setData((d) =>
+            d.map((item) => {
                 return {
                     ...item,
-                    checked: item.id === itemId ? value : item.checked
+                    checked: item.id === itemId ? value : item.checked,
                 };
             })
         );
@@ -310,7 +359,11 @@ const Datatable = ({
             return new Promise(() => {
                 setTimeout(() => {
                     if (onDeleteItems) {
-                        onDeleteItems(data.filter(item => item.checked).map(item => item.id));
+                        onDeleteItems(
+                            data
+                                .filter((item) => item.checked)
+                                .map((item) => item.id)
+                        );
                     }
                 }, 3000);
             });
@@ -318,7 +371,7 @@ const Datatable = ({
     }, [data, onDeleteItems]);
 
     const deleteItem = useCallback(
-        itemId => {
+        (itemId) => {
             confirmAlert(() => {
                 return new Promise(() => {
                     setTimeout(() => {
@@ -332,13 +385,13 @@ const Datatable = ({
         [confirmButtonText, onDeleteItem]
     );
 
-    const showEditButton = item => {
+    const showEditButton = (item) => {
         if (editButton !== null) {
             const button = (
                 <Menu.Item>
-                    {editButton.type === "link" ? (
+                    {editButton.type === 'link' ? (
                         <NavLink
-                            to={editButton.url.replace(":id", item.id)}
+                            to={editButton.url.replace(':id', item.id)}
                             className="flex focus:outline-none items-center px-2 py-1 font-light text-blue-500 bg-green-100 space-x-2"
                         >
                             <svg
@@ -395,7 +448,7 @@ const Datatable = ({
         return null;
     };
 
-    const showDeleteButton = item => {
+    const showDeleteButton = (item) => {
         if (deleteButton !== null) {
             const button = (
                 <Menu.Item onClick={() => deleteItem(item.id)}>
@@ -430,13 +483,13 @@ const Datatable = ({
         return null;
     };
 
-    const showViewButton = item => {
+    const showViewButton = (item) => {
         if (viewButton !== null) {
             const button = (
                 <Menu.Item>
-                    {viewButton.type === "link" ? (
+                    {viewButton.type === 'link' ? (
                         <NavLink
-                            to={viewButton.url.replace(":id", item.id)}
+                            to={viewButton.url.replace(':id', item.id)}
                             className="flex focus:outline-none items-center px-2 py-1 font-light text-indigo-500 bg-blue-100 space-x-2"
                         >
                             <svg
@@ -505,19 +558,19 @@ const Datatable = ({
         return null;
     };
 
-    const searchByValue = value => {
+    const searchByValue = (value) => {
         if (paginateData && loadDataBySearch) {
             loadDataBySearch(value);
         }
         setSearchValue(value);
     };
 
-    const showGenerateButton = item => {
+    const showGenerateButton = (item) => {
         if (generateButton !== null) {
             const button = (
                 <Menu.Item>
                     <NavLink
-                        to={generateButton.url.replace(":id", item.id)}
+                        to={generateButton.url.replace(':id', item.id)}
                         className="flex focus:outline-none items-center px-2 py-1 font-light text-indigo-500 bg-blue-100 space-x-2"
                     >
                         <svg
@@ -582,26 +635,36 @@ const Datatable = ({
 
                     <tbody>
                         {showData.map((item, index) => (
-                            <tr key={index} className="border-b odd:bg-gray-100">
+                            <tr
+                                key={index}
+                                className="border-b odd:bg-gray-100"
+                            >
                                 {checkAll && (
                                     <TableItem>
                                         <input
                                             className="w-4 h-4 bg-gray-300 border-none rounded cursor-pointer form-checkbox focus:ring-0"
                                             type="checkbox"
                                             checked={item.checked}
-                                            onChange={e => checkItem(e.target.checked, item.id)}
+                                            onChange={(e) =>
+                                                checkItem(
+                                                    e.target.checked,
+                                                    item.id
+                                                )
+                                            }
                                         />
                                     </TableItem>
                                 )}
 
                                 {dataProperty.map((property, index) => (
-                                    <TableItem key={index}>{item[property].jsx}</TableItem>
+                                    <TableItem key={index}>
+                                        {item[property].jsx}
+                                    </TableItem>
                                 ))}
 
                                 {(viewButton !== null ||
                                     editButton !== null ||
                                     deleteButton !== null) && (
-                                    <TableItem position={"center"}>
+                                    <TableItem position={'center'}>
                                         {(showViewButton(item) !== null ||
                                             showEditButton(item) ||
                                             showDeleteButton(item)) && (
@@ -619,7 +682,9 @@ const Datatable = ({
                                                                 <path
                                                                     strokeLinecap="round"
                                                                     strokeLinejoin="round"
-                                                                    strokeWidth={2}
+                                                                    strokeWidth={
+                                                                        2
+                                                                    }
                                                                     d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
                                                                 />
                                                             </svg>
@@ -630,13 +695,21 @@ const Datatable = ({
                                                                 styles.fadeInDown
                                                             )}`}
                                                         >
-                                                            {showViewButton(item)}
+                                                            {showViewButton(
+                                                                item
+                                                            )}
 
-                                                            {showEditButton(item)}
+                                                            {showEditButton(
+                                                                item
+                                                            )}
 
-                                                            {showDeleteButton(item)}
+                                                            {showDeleteButton(
+                                                                item
+                                                            )}
 
-                                                            {showGenerateButton(item)}
+                                                            {showGenerateButton(
+                                                                item
+                                                            )}
                                                         </Menu.Items>
                                                     </div>
                                                 </Menu>
@@ -652,7 +725,7 @@ const Datatable = ({
 
             {loading && (
                 <div className="w-full flex items-center justify-center py-5">
-                    <Loader color={"indigo"} size={"lg"} />
+                    <Loader color={'indigo'} size={'lg'} />
                 </div>
             )}
 
@@ -670,11 +743,13 @@ const Datatable = ({
 export default Datatable;
 
 const Container = styled.div.attrs(() => ({
-    className: "bg-white w-full border rounded-md"
+    className: 'bg-white w-full border rounded-md',
 }))``;
 
-const TableItem = styled.td.attrs(props => ({
+const TableItem = styled.td.attrs((props) => ({
     className: `px-4 py-5 font-normal text-${
-        ["left", "center", "right"].includes(props.position) ? props.position : "left"
-    } text-gray-600`
+        ['left', 'center', 'right'].includes(props.position)
+            ? props.position
+            : 'left'
+    } text-gray-600`,
 }))``;

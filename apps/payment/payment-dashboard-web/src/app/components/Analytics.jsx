@@ -1,152 +1,152 @@
-import { Menu, Transition } from "@headlessui/react";
-import { useState } from "react";
-import Chart from "react-apexcharts";
+import { Menu, Transition } from '@headlessui/react';
+import { useState } from 'react';
+import Chart from 'react-apexcharts';
 
-import { formatToCurrency } from "../helpers";
+import { formatToCurrency } from '../helpers';
 
 const Analytics = ({ balance = 0 }) => {
     const [expenses, setExpenses] = useState({
-        value: "45141",
-        period: "This week",
-        percentage: 57
+        value: '45141',
+        period: 'This week',
+        percentage: 57,
     });
 
     const sparkOptions1 = {
         chart: {
-            id: "unique-visits",
-            group: "sparks2",
-            type: "line",
+            id: 'unique-visits',
+            group: 'sparks2',
+            type: 'line',
             height: 58,
             sparkline: {
-                enabled: true
+                enabled: true,
             },
             dropShadow: {
                 enabled: true,
                 top: 3,
                 left: 1,
                 blur: 3,
-                color: "#009688",
-                opacity: 0.7
-            }
+                color: '#009688',
+                opacity: 0.7,
+            },
         },
         stroke: {
-            curve: "smooth",
-            width: 2
+            curve: 'smooth',
+            width: 2,
         },
         markers: {
-            size: 0
+            size: 0,
         },
         grid: {
             padding: {
                 top: 0,
                 bottom: 0,
-                left: 0
-            }
+                left: 0,
+            },
         },
-        colors: ["#009688"],
+        colors: ['#009688'],
         tooltip: {
             x: {
-                show: false
+                show: false,
             },
             y: {
                 title: {
                     formatter: function formatter() {
-                        return "";
-                    }
-                }
-            }
+                        return '';
+                    },
+                },
+            },
         },
         responsive: [
             {
                 breakpoint: 576,
                 options: {
                     chart: {
-                        height: 95
+                        height: 95,
                     },
                     grid: {
                         padding: {
                             top: 45,
                             bottom: 0,
-                            left: 0
-                        }
-                    }
-                }
-            }
-        ]
+                            left: 0,
+                        },
+                    },
+                },
+            },
+        ],
     };
     const sparkSeries1 = [
         {
-            data: [21, 9, 36, 12, 44, 25, 59, 41, 66, 25]
-        }
+            data: [21, 9, 36, 12, 44, 25, 59, 41, 66, 25],
+        },
     ];
 
     const sparkOptions2 = {
         chart: {
-            id: "total-users",
-            group: "sparks1",
-            type: "line",
+            id: 'total-users',
+            group: 'sparks1',
+            type: 'line',
             height: 58,
             sparkline: {
-                enabled: true
+                enabled: true,
             },
             dropShadow: {
                 enabled: true,
                 top: 1,
                 left: 1,
                 blur: 2,
-                color: "#e2a03f",
-                opacity: 0.7
-            }
+                color: '#e2a03f',
+                opacity: 0.7,
+            },
         },
         stroke: {
-            curve: "smooth",
-            width: 2
+            curve: 'smooth',
+            width: 2,
         },
         markers: {
-            size: 0
+            size: 0,
         },
         grid: {
             padding: {
                 top: 0,
                 bottom: 0,
-                left: 0
-            }
+                left: 0,
+            },
         },
-        colors: ["#e2a03f"],
+        colors: ['#e2a03f'],
         tooltip: {
             x: {
-                show: false
+                show: false,
             },
             y: {
                 title: {
                     formatter: function formatter() {
-                        return "";
-                    }
-                }
-            }
+                        return '';
+                    },
+                },
+            },
         },
         responsive: [
             {
                 breakpoint: 576,
                 options: {
                     chart: {
-                        height: 95
+                        height: 95,
                     },
                     grid: {
                         padding: {
                             top: 35,
                             bottom: 0,
-                            left: 0
-                        }
-                    }
-                }
-            }
-        ]
+                            left: 0,
+                        },
+                    },
+                },
+            },
+        ],
     };
     const sparkSeries2 = [
         {
-            data: [22, 19, 30, 47, 32, 44, 34, 55, 41, 69]
-        }
+            data: [22, 19, 30, 47, 32, 44, 34, 55, 41, 69],
+        },
     ];
 
     return (
@@ -201,7 +201,9 @@ const Analytics = ({ balance = 0 }) => {
 
                 <div className="grid grid-cols-2 gap-10">
                     <div className="col-span-1 mt-8">
-                        <p className="text-sm font-medium text-gray-600">Total transfer</p>
+                        <p className="text-sm font-medium text-gray-600">
+                            Total transfer
+                        </p>
                         <p className="mt-1 text-xl text-pink-600">338</p>
 
                         <Chart
@@ -213,7 +215,9 @@ const Analytics = ({ balance = 0 }) => {
                     </div>
 
                     <div className="col-span-1 mt-8">
-                        <p className="text-sm font-medium text-gray-600">Total of reception</p>
+                        <p className="text-sm font-medium text-gray-600">
+                            Total of reception
+                        </p>
                         <p className="mt-1 text-xl text-pink-600">393</p>
 
                         <Chart
@@ -257,9 +261,9 @@ const Analytics = ({ balance = 0 }) => {
                                             href="#view-report"
                                             onClick={() => {
                                                 setExpenses({
-                                                    value: "45141",
-                                                    period: "This week",
-                                                    percentage: 57
+                                                    value: '45141',
+                                                    period: 'This week',
+                                                    percentage: 57,
                                                 });
                                             }}
                                         >
@@ -273,9 +277,9 @@ const Analytics = ({ balance = 0 }) => {
                                             href="#edit-report"
                                             onClick={() => {
                                                 setExpenses({
-                                                    value: "40000",
-                                                    period: "Last week",
-                                                    percentage: 45
+                                                    value: '40000',
+                                                    period: 'Last week',
+                                                    percentage: 45,
                                                 });
                                             }}
                                         >
@@ -289,9 +293,9 @@ const Analytics = ({ balance = 0 }) => {
                                             href="#edit-report"
                                             onClick={() => {
                                                 setExpenses({
-                                                    value: "9500",
-                                                    period: "Last Month",
-                                                    percentage: 27
+                                                    value: '9500',
+                                                    period: 'Last Month',
+                                                    percentage: 27,
                                                 });
                                             }}
                                         >
@@ -346,7 +350,12 @@ const Analytics = ({ balance = 0 }) => {
             <div className="relative col-span-6 px-4 py-3 overflow-hidden text-white bg-white bg-blue-500 border rounded-md shadow-xs md:col-span-3 lg:col-span-2">
                 <div
                     className="absolute z-0 bg-blue-800 rounded-full bg-opacity-50 ml-36"
-                    style={{ height: "310px", width: "382px", left: "8%", top: "-45px" }}
+                    style={{
+                        height: '310px',
+                        width: '382px',
+                        left: '8%',
+                        top: '-45px',
+                    }}
                 />
                 <div className="relative flex justify-between">
                     <h3 className="font-light text-white text-opacity-80">
@@ -399,7 +408,9 @@ const Analytics = ({ balance = 0 }) => {
                         </button>
                     </div>
 
-                    <p className="text-sm font-light text-white text-opacity-90">Upgrade</p>
+                    <p className="text-sm font-light text-white text-opacity-90">
+                        Upgrade
+                    </p>
                 </div>
             </div>
         </div>

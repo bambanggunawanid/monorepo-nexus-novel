@@ -1,14 +1,14 @@
-import { Menu, Transition } from "@headlessui/react";
-import { AiOutlineHome } from "react-icons/ai";
-import { HiBeaker } from "react-icons/hi2";
-import { Link, useNavigate } from "react-router-dom";
+import { Menu, Transition } from '@headlessui/react';
+import { AiOutlineHome } from 'react-icons/ai';
+import { HiBeaker } from 'react-icons/hi2';
+import { Link, useNavigate } from 'react-router-dom';
 
-import { logout } from "../helpers";
+import { logout } from '../helpers';
 
 const AdminNav = () => {
     const navigate = useNavigate();
 
-    const handleClick = e => {
+    const handleClick = (e) => {
         e.preventDefault();
         logout(navigate);
     };
@@ -60,7 +60,11 @@ const AdminNav = () => {
                 <Menu>
                     <div className="relative">
                         <Menu.Button>
-                            <img className="w-5 h-5 mt-1.5" src="assets/images/ca.png" alt="" />
+                            <img
+                                className="w-5 h-5 mt-1.5"
+                                src="assets/images/ca.png"
+                                alt=""
+                            />
                         </Menu.Button>
 
                         <Transition
@@ -75,20 +79,28 @@ const AdminNav = () => {
                                 <div className="absolute right-0 z-10 w-36 px-2 py-1 mt-1 text-gray-600 bg-white border rounded-md shadow">
                                     <Menu.Item>
                                         <Link
-                                            to={"#french"}
+                                            to={'#french'}
                                             className="flex items-center space-x-3 px-4 py-2.5 text-sm hover:bg-gray-100 hover:text-purple-500"
                                         >
-                                            <img className="w-5 h-5" src="assets/images/fr.png" alt="" />
+                                            <img
+                                                className="w-5 h-5"
+                                                src="assets/images/fr.png"
+                                                alt=""
+                                            />
                                             <h3>French</h3>
                                         </Link>
                                     </Menu.Item>
 
                                     <Menu.Item>
                                         <Link
-                                            to={"#english"}
+                                            to={'#english'}
                                             className="flex items-center space-x-3 px-4 py-2.5 text-sm hover:bg-gray-100 hover:text-purple-500"
                                         >
-                                            <img className="w-5 h-5" src="assets/images/ca.png" alt="" />
+                                            <img
+                                                className="w-5 h-5"
+                                                src="assets/images/ca.png"
+                                                alt=""
+                                            />
                                             <h3>English</h3>
                                         </Link>
                                     </Menu.Item>
@@ -129,7 +141,7 @@ const AdminNav = () => {
                                 <div className="absolute right-0 z-10 w-56 px-2 py-1 mt-1 text-gray-600 bg-white border rounded-md shadow">
                                     <Menu.Item>
                                         <Link
-                                            to={"#notif-1"}
+                                            to={'#notif-1'}
                                             className="flex items-center justify-between px-3 py-2.5 text-sm hover:text-purple-500"
                                         >
                                             <div className="flex items-center space-x-2">
@@ -147,7 +159,9 @@ const AdminNav = () => {
                                                 </svg>
                                                 <div>
                                                     <h3>Server Rebooted</h3>
-                                                    <p className="text-gray-400">45 min ago</p>
+                                                    <p className="text-gray-400">
+                                                        45 min ago
+                                                    </p>
                                                 </div>
                                             </div>
 
@@ -171,7 +185,7 @@ const AdminNav = () => {
 
                                     <Menu.Item>
                                         <Link
-                                            to={"#notif-2"}
+                                            to={'#notif-2'}
                                             className="flex items-center justify-between px-3 py-2.5 text-sm hover:text-purple-500"
                                         >
                                             <div className="flex items-center space-x-2">
@@ -190,8 +204,12 @@ const AdminNav = () => {
                                                     />
                                                 </svg>
                                                 <div>
-                                                    <h3>Licence Expiring Soon</h3>
-                                                    <p className="text-gray-400">8 hrs ago</p>
+                                                    <h3>
+                                                        Licence Expiring Soon
+                                                    </h3>
+                                                    <p className="text-gray-400">
+                                                        8 hrs ago
+                                                    </p>
                                                 </div>
                                             </div>
 
@@ -220,7 +238,11 @@ const AdminNav = () => {
                 <Menu>
                     <div className="relative">
                         <Menu.Button className="focus:outline-none">
-                            <img className="w-8 h-8 rounded-md" src="assets/images/avatar.jpeg" alt="" />
+                            <img
+                                className="w-8 h-8 rounded-md"
+                                src="assets/images/avatar.jpeg"
+                                alt=""
+                            />
                         </Menu.Button>
 
                         <Transition
@@ -235,7 +257,7 @@ const AdminNav = () => {
                                 <div className="absolute right-0 z-10 w-48 px-2 py-1 mt-1 text-gray-600 bg-white border rounded-md shadow">
                                     <Menu.Item>
                                         <Link
-                                            to={"/"}
+                                            to={'/'}
                                             className="flex items-center space-x-3 px-3 py-2.5 text-sm hover:text-purple-500"
                                         >
                                             <AiOutlineHome className="h-5 w-5" />
@@ -246,7 +268,7 @@ const AdminNav = () => {
 
                                     <Menu.Item>
                                         <Link
-                                            to={"#profile"}
+                                            to={'#profile'}
                                             className="flex items-center space-x-3 px-3 py-2.5 text-sm hover:text-purple-500"
                                         >
                                             <svg
@@ -270,7 +292,7 @@ const AdminNav = () => {
 
                                     <Menu.Item>
                                         <a
-                                            href={"/logout"}
+                                            href={'/logout'}
                                             className="flex items-center space-x-3 px-3 py-2.5 text-sm hover:text-purple-500"
                                             onClick={handleClick}
                                         >

@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const TableHead = ({
     head = [],
@@ -11,7 +11,7 @@ const TableHead = ({
     viewButton,
     editButton,
     deleteButton,
-    paginateData = null
+    paginateData = null,
 }) => {
     return (
         <Container>
@@ -22,7 +22,9 @@ const TableHead = ({
                             className="w-4 h-4 bg-gray-300 border-none rounded cursor-pointer form-checkbox focus:ring-0"
                             type="checkbox"
                             checked={checkValue}
-                            onChange={e => onChangeCheckValue(e.target.checked)}
+                            onChange={(e) =>
+                                onChangeCheckValue(e.target.checked)
+                            }
                         />
                     </CheckboxContainer>
                 )}
@@ -35,7 +37,10 @@ const TableHead = ({
                             {sort !== null && paginateData === null && (
                                 <ChevronContainer>
                                     <ChevronIcon
-                                        opacityIcon={sort[index] !== null && sort[index] === "asc"}
+                                        opacityIcon={
+                                            sort[index] !== null &&
+                                            sort[index] === 'asc'
+                                        }
                                         fill="currentColor"
                                         viewBox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg"
@@ -47,8 +52,11 @@ const TableHead = ({
                                         />
                                     </ChevronIcon>
                                     <ChevronIcon
-                                        opacityIcon={sort[index] !== null && sort[index] === "desc"}
-                                        position={"bottom"}
+                                        opacityIcon={
+                                            sort[index] !== null &&
+                                            sort[index] === 'desc'
+                                        }
+                                        position={'bottom'}
                                         fill="currentColor"
                                         viewBox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg"
@@ -65,8 +73,10 @@ const TableHead = ({
                     </HeadItem>
                 ))}
 
-                {(viewButton !== null || editButton !== null || deleteButton !== null) && (
-                    <HeadItem position={"center"}>Actions</HeadItem>
+                {(viewButton !== null ||
+                    editButton !== null ||
+                    deleteButton !== null) && (
+                    <HeadItem position={'center'}>Actions</HeadItem>
                 )}
             </tr>
         </Container>
@@ -76,29 +86,31 @@ const TableHead = ({
 export default TableHead;
 
 const Container = styled.thead.attrs(() => ({
-    className: ""
+    className: '',
 }))``;
 
 const CheckboxContainer = styled.th.attrs(() => ({
-    className: "w-10 px-4 py-2 font-normal text-left text-gray-600"
+    className: 'w-10 px-4 py-2 font-normal text-left text-gray-600',
 }))``;
 
-const HeadItem = styled.th.attrs(props => ({
+const HeadItem = styled.th.attrs((props) => ({
     className: `px-4 py-2 font-semibold tracking-wider cursor-pointer text-${
-        ["left", "center", "right"].includes(props.position) ? props.position : "left"
-    } text-gray-600`
+        ['left', 'center', 'right'].includes(props.position)
+            ? props.position
+            : 'left'
+    } text-gray-600`,
 }))``;
 
 const HeadItemContainer = styled.div.attrs(() => ({
-    className: "flex items-center justify-between w-full"
+    className: 'flex items-center justify-between w-full',
 }))``;
 
 const ChevronContainer = styled.div.attrs(() => ({
-    className: "flex flex-col"
+    className: 'flex flex-col',
 }))``;
 
-const ChevronIcon = styled.svg.attrs(props => ({
-    className: `w-3 h-3 text-gray-500 ${props.opacityIcon ? "text-opacity-30" : ""} ${
-        props.position === "bottom" ? "transform rotate-180" : ""
-    }`
+const ChevronIcon = styled.svg.attrs((props) => ({
+    className: `w-3 h-3 text-gray-500 ${
+        props.opacityIcon ? 'text-opacity-30' : ''
+    } ${props.position === 'bottom' ? 'transform rotate-180' : ''}`,
 }))``;

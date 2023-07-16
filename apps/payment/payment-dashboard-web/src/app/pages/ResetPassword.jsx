@@ -1,7 +1,7 @@
-import { PrimaryButton } from "../components/buttons";
-import { Input } from "../components/field";
-import { Link } from "../components/utils";
-import AuthLayout from "../layouts/AuthLayout";
+import { PrimaryButton } from '../components/buttons';
+import { Input } from '../components/field';
+import { Link } from '../components/utils';
+import AuthLayout from '../layouts/AuthLayout';
 
 const ResetPassword = () => {
     return (
@@ -12,7 +12,9 @@ const ResetPassword = () => {
                 </>
             }
         >
-            <h3 className="text-center text-xl font-semibold text-gray-700">Update password</h3>
+            <h3 className="text-center text-xl font-semibold text-gray-700">
+                Update password
+            </h3>
             <p className="text-center text-sm mt-2 mb-10">
                 Enter and confirm the new password to make the change.
             </p>
@@ -20,7 +22,7 @@ const ResetPassword = () => {
             <form className="space-y-5">
                 <div>
                     <Input
-                        label={"New password"}
+                        label={'New password'}
                         id="new_password"
                         type="password"
                         placeholder="Enter new password"
@@ -29,7 +31,7 @@ const ResetPassword = () => {
 
                 <div>
                     <Input
-                        label={"Confirm password"}
+                        label={'Confirm password'}
                         id="confirm_password"
                         type="password"
                         placeholder="Confirm password"
