@@ -27,6 +27,7 @@
         "@nestjs/typeorm": "^10.0.0",
         "@nx/cypress": "16.5.0",
         "@nx/detox": "16.5.0",
+        "@nx/devkit": "^16.5.2",
         "@nx/eslint-plugin": "16.5.0",
         "@nx/expo": "16.5.0",
         "@nx/jest": "16.5.0",
