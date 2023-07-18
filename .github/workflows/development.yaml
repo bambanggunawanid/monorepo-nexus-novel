@@ -28,7 +28,7 @@ jobs:
         cache: "pnpm"
     - uses: nrwl/nx-set-shas@v3
       with:
-        main-branch-name: '$BRANCH_NAME'
+        main-branch-name: '${{ vars.BRANCH_NAME }}'
     - run: pnpm i --frozen-lockfile
     - run: pnpm exec nx format:check
     - run: pnpm exec nx affected -t lint --parallel=3
