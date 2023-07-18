@@ -2,14 +2,13 @@ name: Development
 
 on:
   pull_request:
-    branches: [ "development" ]
+    branches: [ "${{ vars.BRANCH_NAME }}" ]
 
 jobs:
-  build-dev:
-    environment: Development
-  
-    name: Build and Test Development
+  Install:
+    name: Install & Cache Dependency
     runs-on: ubuntu-latest
+    environment: Development
 
     strategy:
       matrix:
@@ -28,9 +27,25 @@ jobs:
         cache: "pnpm"
     - uses: nrwl/nx-set-shas@v3
       with:
-        main-branch-name: '${{ vars.BRANCH_NAME }}'
+        main-branch-name: "${{ vars.BRANCH_NAME }}"
     - run: pnpm i --frozen-lockfile
+    
+  Test:
+    name: Testing Affected
+    runs-on: ubuntu-latest
+    environment: Production
+    needs: Install
+    
+    steps:
     - run: pnpm exec nx format:check
     - run: pnpm exec nx affected -t lint --parallel=3
     - run: pnpm exec nx affected -t test --parallel=3 --configuration=ci
+
+  Build:
+    name: Build Affected to Development Server
+    runs-on: ubuntu-latest
+    environment: Production
+    needs: Test
+    
+    steps:
     - run: pnpm exec nx affected -t build --parallel=3
