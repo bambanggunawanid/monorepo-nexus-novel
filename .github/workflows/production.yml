@@ -1,16 +1,14 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
 name: Production
 
 on:
   pull_request:
-    branches: [ "production" ]
+    branches: [ "${{ vars.BRANCH_NAME }}" ]
 
 jobs:
-  build:
-    name: Build and Test
+  Install:
+    name: Install & Cache Dependency
     runs-on: ubuntu-latest
+    environment: Production
 
     strategy:
       matrix:
@@ -18,36 +16,36 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-
-    - name: Install Node.js
-      uses: actions/setup-node@v3
       with:
-        node-version: 18
-
-    - name: Install Pnpm
-      uses: pnpm/action-setup@v2
+        fetch-depth: 0
+    - uses: pnpm/action-setup@v2
       with:
           version: 8
-          run_install: true
-
-    - name: Install Nx
-      run: pnpm install --global nx@latest
-
-    - name: Get pnpm store directory
-      id: pnpm-cache
-      shell: bash
-      run: |
-        echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-    - name: Setup pnpm cache
-      uses: actions/cache@v3
+    - uses: actions/setup-node@v3
       with:
-        path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-        restore-keys: |
-          ${{ runner.os }}-pnpm-store-
+        node-version: 18.x
+        cache: "pnpm"
+    - uses: nrwl/nx-set-shas@v3
+      with:
+        main-branch-name: "${{ vars.BRANCH_NAME }}"
+    - run: pnpm i --frozen-lockfile
+    
+  Test:
+    name: Testing Affected
+    runs-on: ubuntu-latest
+    environment: Production
+    needs: Install
+    
+    steps:
+    - run: pnpm exec nx format:check
+    - run: pnpm exec nx affected -t lint --parallel=3
+    - run: pnpm exec nx affected -t test --parallel=3 --configuration=ci
 
-    - name: Build All App
-      run: pnpm all:build
-    - name: Unit Test All App
-      run: pnpm all:test
+  Build:
+    name: Build Affected to Development Server
+    runs-on: ubuntu-latest
+    environment: Production
+    needs: Test
+    
+    steps:
+    - run: pnpm exec nx affected -t build --parallel=3
