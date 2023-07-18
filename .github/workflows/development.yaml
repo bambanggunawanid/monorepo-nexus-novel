@@ -39,7 +39,9 @@ jobs:
     - name: Install dependencies
       if: steps.cache-primes.outputs.cache-hit != 'true'
       run: pnpm i --frozen-lockfile
-    
+    - name: Build Affected
+      run: pnpm exec nx affected -t build --parallel=3
+
   Test:
     name: Testing Affected
     runs-on: ubuntu-latest
@@ -48,6 +50,11 @@ jobs:
     
     steps:
     - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - uses: pnpm/action-setup@v2
+      with:
+          version: 8
     - uses: actions/setup-node@v3
       with:
         node-version: 18.x
@@ -68,13 +75,18 @@ jobs:
       run: pnpm exec nx affected -t test --parallel=3 --configuration=ci
 
   Deploy:
-    name: Build Affected to Development Server
+    name: Deploy to GCP
     runs-on: ubuntu-latest
     environment: Development
     needs: Test
     
     steps:
     - uses: actions/checkout@v3
+      with:
+          fetch-depth: 0
+    - uses: pnpm/action-setup@v2
+      with:
+          version: 8
     - uses: actions/setup-node@v3
       with:
         node-version: 18.x
