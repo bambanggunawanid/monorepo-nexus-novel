@@ -33,7 +33,7 @@ jobs:
   Test:
     name: Testing Affected
     runs-on: ubuntu-latest
-    environment: Production
+    environment: Development
     needs: Install
     
     steps:
@@ -44,7 +44,7 @@ jobs:
   Build:
     name: Build Affected to Development Server
     runs-on: ubuntu-latest
-    environment: Production
+    environment: Development
     needs: Test
     
     steps:
