@@ -42,7 +42,7 @@ jobs:
     - run: pnpm exec nx affected -t test --parallel=3 --configuration=ci
 
   Build:
-    name: Build Affected to Development Server
+    name: Build Affected to Production Server
     runs-on: ubuntu-latest
     environment: Production
     needs: Test
