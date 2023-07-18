@@ -18,34 +18,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-
-    - name: Install Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18
-
-    - name: Install Pnpm
-      uses: pnpm/action-setup@v2
+    - uses: pnpm/action-setup@v2
       with:
           version: 8
-          run_install: true
-
-    - name: Install Nx
-      run: pnpm install --global nx@latest
-
-    - name: Get pnpm store directory
-      id: pnpm-cache
-      shell: bash
-      run: |
-        echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-    - name: Setup pnpm cache
-      uses: actions/cache@v3
+    - uses: actions/setup-node@v3
       with:
-        path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-        restore-keys: |
-          ${{ runner.os }}-pnpm-store-
+        node-version: 18.x
+        cache: "pnpm"
+    - uses: nrwl/nx-set-shas@v3
 
     - name: Build All App
       run: pnpm all:build
