@@ -2,7 +2,7 @@ name: Development
 
 on:
   pull_request:
-    branches: [ "${{ vars.BRANCH_NAME }}" ]
+    branches: [ "development" ]
 
 jobs:
   Install:

@@ -2,7 +2,7 @@ name: Staging
 
 on:
   pull_request:
-    branches: [ "${{ vars.BRANCH_NAME }}" ]
+    branches: [ "staging" ]
 
 jobs:
   Install:
