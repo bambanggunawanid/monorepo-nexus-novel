@@ -18,26 +18,33 @@ jobs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
-    - uses: pnpm/action-setup@v2
+    - name: Install PNPM
+      uses: pnpm/action-setup@v2
       with:
           version: 8
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 18.x
-        cache: "pnpm"
-    - name: Cache PNPM Dependencies
-      uses: actions/cache@v3
-      id: cache-primes
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-node-${{ hashFiles('pnpm-lock.yaml') }}
-
-    - uses: nrwl/nx-set-shas@v3
+    - name: Install NX
+      uses: nrwl/nx-set-shas@v3
       with:
         main-branch-name: "${{ vars.BRANCH_NAME }}"
-    
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: "pnpm"
+    - name: Get pnpm store directory
+      id: pnpm-cache
+      shell: bash
+      run: |
+        echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+    - name: Setup pnpm cache
+      uses: actions/cache@v3
+      with:
+        path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-store-
     - name: Install dependencies
-      if: steps.cache-primes.outputs.cache-hit != 'true'
+      if: steps.pnpm-cache.outputs.cache-hit != 'true'
       run: pnpm i --frozen-lockfile
     - name: Build Affected
       run: pnpm exec nx affected -t build --parallel=3
@@ -52,21 +59,32 @@ jobs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
-    - uses: pnpm/action-setup@v2
+    - name: Install PNPM
+      uses: pnpm/action-setup@v2
       with:
           version: 8
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 18.x
-        cache: "pnpm"
-    - name: Cache PNPM dependencies
-      uses: actions/cache@v3
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-node-${{ hashFiles('pnpm-lock.yaml') }}
-    - uses: nrwl/nx-set-shas@v3
+    - name: Install NX
+      uses: nrwl/nx-set-shas@v3
       with:
         main-branch-name: "${{ vars.BRANCH_NAME }}"
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: "pnpm"
+    - name: Get pnpm store directory
+      id: pnpm-cache
+      shell: bash
+      run: |
+        echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+    - name: Setup pnpm cache
+      uses: actions/cache@v3
+      with:
+        path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-store-
+
     - name: Check Format
       run: pnpm exec nx format:check
     - name: Check Lint Affected
@@ -83,21 +101,31 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-          fetch-depth: 0
-    - uses: pnpm/action-setup@v2
+        fetch-depth: 0
+    - name: Install PNPM
+      uses: pnpm/action-setup@v2
       with:
           version: 8
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 18.x
-        cache: "pnpm"
-    - name: Cache PNPM dependencies
-      uses: actions/cache@v3
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-node-${{ hashFiles('pnpm-lock.yaml') }}
-    - uses: nrwl/nx-set-shas@v3
+    - name: Install NX
+      uses: nrwl/nx-set-shas@v3
       with:
         main-branch-name: "${{ vars.BRANCH_NAME }}"
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: "pnpm"
+    - name: Get pnpm store directory
+      id: pnpm-cache
+      shell: bash
+      run: |
+        echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+    - name: Setup pnpm cache
+      uses: actions/cache@v3
+      with:
+        path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-store-
     - name: Deploy Application
       run: pnpm exec nx affected -t build --parallel=3
