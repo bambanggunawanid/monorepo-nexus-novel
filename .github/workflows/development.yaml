@@ -25,6 +25,8 @@ jobs:
         node-version: 18.x
         cache: "pnpm"
     - uses: nrwl/nx-set-shas@v3
+      with:
+        main-branch-name: 'development'
 
     - name: Build All App
       run: pnpm all:build
