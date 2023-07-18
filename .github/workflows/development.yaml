@@ -5,8 +5,10 @@ on:
     branches: [ "development" ]
 
 jobs:
-  build:
-    name: Build and Test
+  build-dev:
+    environment: Development
+  
+    name: Build and Test Development
     runs-on: ubuntu-latest
 
     strategy:
@@ -26,7 +28,7 @@ jobs:
         cache: "pnpm"
     - uses: nrwl/nx-set-shas@v3
       with:
-        main-branch-name: 'development'
+        main-branch-name: '$BRANCH_NAME'
     - run: pnpm i --frozen-lockfile
     - run: pnpm exec nx format:check
     - run: pnpm exec nx affected -t lint --parallel=3
