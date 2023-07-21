@@ -5,7 +5,7 @@ on:
     branches: [ "development" ]
 
 jobs:
-  Build:
+  build-and-test:
     name: Build & Cache Dependency
     runs-on: ubuntu-latest
     environment: Development
@@ -47,51 +47,28 @@ jobs:
     - name: Install dependencies
       if: steps.pnpm-cache.outputs.cache-hit != 'true'
       run: pnpm i --frozen-lockfile
-    - name: Build Affected
-      run: pnpm nx affected -t build --parallel=3
-
-  Test:
-    name: Testing Affected
-    runs-on: ubuntu-latest
-    environment: Development
-    needs: Build
-    
-    steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-    - name: Install PNPM
-      uses: pnpm/action-setup@v2
-      with:
-          version: 8
-    - name: Install NX
-      uses: nrwl/nx-set-shas@v3
-      with:
-        main-branch-name: "${{ vars.BRANCH_NAME }}"
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: "pnpm"
-    - name: Get pnpm store directory
-      id: pnpm-cache
-      shell: bash
-      run: |
-        echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-    - name: Install Nx
-      run: npm install --global nx@latest
     - name: Check Format
-      run: pnpm nx format:check
+      run: |
+        pnpm nx format:check
     - name: Check Lint Affected
-      run: pnpm nx affected -t lint --parallel=3
+      run: |
+        pnpm nx affected -t lint --parallel=3
     - name: Check Test Affected
-      run: pnpm nx affected -t test --parallel=3 --configuration=ci
-
-  Deploy:
+      run: |
+        pnpm nx affected -t test --parallel=3 --configuration=ci
+    - name: Build Affected
+      run: |
+        pnpm nx affected -t build --parallel=3
+    
+  deploy:
     name: Deploy to GCP
     runs-on: ubuntu-latest
     environment: Development
-    needs: Test
+    needs: build-and-test
+
+    strategy:
+      matrix:
+        node-version: [18.x]
     
     steps:
     - uses: actions/checkout@v3
@@ -101,21 +78,12 @@ jobs:
       uses: pnpm/action-setup@v2
       with:
           version: 8
-    - name: Install NX
-      uses: nrwl/nx-set-shas@v3
-      with:
-        main-branch-name: "${{ vars.BRANCH_NAME }}"
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: "pnpm"
-    - name: Get pnpm store directory
-      id: pnpm-cache
-      shell: bash
-      run: |
-        echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-    - name: Install Nx
-      run: npm install --global nx@latest
+
     - name: Deploy Application
-      run: pnpm nx affected -t build --parallel=3
+      run: |
+        echo "Deploy to GCP"
