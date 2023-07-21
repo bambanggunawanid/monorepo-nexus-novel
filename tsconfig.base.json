@@ -15,7 +15,36 @@
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
         "paths": {
-            "@novel-nexus/auth-lib": ["libs/auth-lib/src/index.ts"]
+            "@api/nexus-account": [
+                "libs/api/core/nexus-admin/account/nexus-account/src/index.ts"
+            ],
+            "api/core/nexus-admin/storage/nexus-cloud-storage": [
+                "libs/api/core/nexus-admin/storage/nexus-cloud-storage/src/index.ts"
+            ],
+            "api/payment/nexus-admin/storage/nexus-cloud-storage": [
+                "libs/api/payment/nexus-admin/storage/nexus-cloud-storage/src/index.ts"
+            ],
+            "api/payment/payment-admin/backup/payment-backup": [
+                "libs/api/payment/payment-admin/backup/payment-backup/src/index.ts"
+            ],
+            "api/payment/payment-admin/pay-backup/payment-backup": [
+                "libs/api/payment/payment-admin/pay-backup/payment-backup/src/index.ts"
+            ],
+            "api/payment/payment-admin/pay-hub/payment-info": [
+                "libs/api/payment/payment-admin/pay-hub/payment-info/src/index.ts"
+            ],
+            "api/storage-admin/storage/storage-admin-info": [
+                "libs/api/storage-admin/storage/storage-admin-info/src/index.ts"
+            ],
+            "client/core/nexus-cloud-admin/dashboard/web/component/dashboard-layouts": [
+                "libs/client/core/nexus-cloud-admin/dashboard/web/component/dashboard-layouts/src/index.ts"
+            ],
+            "client/payment/payment-admin/pay-hub/web/feature/transaction-info": [
+                "libs/client/payment/payment-admin/pay-hub/web/feature/transaction-info/src/index.ts"
+            ],
+            "core/client/nexus-cloud-admin/dashboard/web/component/dashboard-layouts": [
+                "libs/core/client/nexus-cloud-admin/dashboard/web/component/dashboard-layouts/src/index.ts"
+            ]
         }
     },
     "exclude": ["node_modules", "tmp"]

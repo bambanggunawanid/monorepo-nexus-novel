@@ -1,0 +1,48 @@
+{
+    "name": "client-core-nexus-cloud-admin-dashboard-web-component-dashboard-layouts",
+    "$schema": "../../../../../../../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "libs/client/core/nexus-cloud-admin/dashboard/web/component/dashboard-layouts/src",
+    "projectType": "library",
+    "tags": [],
+    "targets": {
+        "lint": {
+            "executor": "@nx/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": [
+                    "libs/client/core/nexus-cloud-admin/dashboard/web/component/dashboard-layouts/**/*.{ts,tsx,js,jsx}"
+                ]
+            }
+        },
+        "build": {
+            "executor": "@nx/vite:build",
+            "outputs": ["{options.outputPath}"],
+            "defaultConfiguration": "production",
+            "options": {
+                "outputPath": "dist/libs/client/core/nexus-cloud-admin/dashboard/web/component/dashboard-layouts"
+            },
+            "configurations": {
+                "development": {
+                    "mode": "development"
+                },
+                "production": {
+                    "mode": "production"
+                }
+            }
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "libs/client/core/nexus-cloud-admin/dashboard/web/component/dashboard-layouts/jest.config.ts",
+                "passWithNoTests": true
+            },
+            "configurations": {
+                "ci": {
+                    "ci": true,
+                    "codeCoverage": true
+                }
+            }
+        }
+    }
+}
