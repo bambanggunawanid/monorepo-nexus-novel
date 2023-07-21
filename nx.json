@@ -21,20 +21,43 @@
                 "{workspaceRoot}/.eslintrc.json",
                 "{workspaceRoot}/.eslintignore"
             ]
+        },
+        "build": {
+            "executor": "@nx/vite:vite",
+            "options": {
+                "generatePackageJson": true
+            },
+            "inputs": ["production", "^production"]
         }
     },
     "generators": {
-        "@nx/react": {
-            "application": {
-                "babel": true
-            }
-        },
         "@nx/next": {
             "application": {
                 "style": "styled-jsx",
                 "linter": "eslint"
             }
+        },
+        "@nx/react": {
+            "application": {
+                "style": "css",
+                "linter": "eslint",
+                "bundler": "webpack",
+                "babel": true
+            },
+            "component": {
+                "style": "css"
+            },
+            "library": {
+                "style": "css",
+                "linter": "eslint"
+            }
         }
     },
-    "defaultProject": "nexus-frontend"
+    "defaultProject": "core-nexus-cloud-web",
+    "$schema": "./node_modules/nx/schemas/nx-schema.json",
+    "namedInputs": {
+        "default": ["{projectRoot}/**/*", "sharedGlobals"],
+        "sharedGlobals": [],
+        "production": ["default"]
+    }
 }
