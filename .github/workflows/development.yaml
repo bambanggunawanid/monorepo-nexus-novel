@@ -78,7 +78,8 @@ jobs:
       shell: bash
       run: |
         echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-
+    - name: Install Nx
+      run: pnpm install - global nx@latest
     - name: Check Format
       run: pnpm nx format:check
     - name: Check Lint Affected
@@ -114,6 +115,7 @@ jobs:
       shell: bash
       run: |
         echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-          
+    - name: Install Nx
+      run: pnpm install - global nx@latest
     - name: Deploy Application
       run: pnpm nx affected -t build --parallel=3
