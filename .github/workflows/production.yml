@@ -2,11 +2,11 @@ name: Production
 
 on:
   pull_request:
-    branches: [ "${{ vars.BRANCH_NAME }}" ]
+    branches: [ "production" ]
 
 jobs:
-  Install:
-    name: Install & Cache Dependency
+  build-and-test:
+    name: Build & Cache Dependency
     runs-on: ubuntu-latest
     environment: Production
 
@@ -18,34 +18,72 @@ jobs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
-    - uses: pnpm/action-setup@v2
+    - name: Install PNPM
+      uses: pnpm/action-setup@v2
       with:
           version: 8
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 18.x
-        cache: "pnpm"
-    - uses: nrwl/nx-set-shas@v3
+    - name: Install NX
+      uses: nrwl/nx-set-shas@v3
       with:
         main-branch-name: "${{ vars.BRANCH_NAME }}"
-    - run: pnpm i --frozen-lockfile
-    
-  Test:
-    name: Testing Affected
-    runs-on: ubuntu-latest
-    environment: Production
-    needs: Install
-    
-    steps:
-    - run: pnpm exec nx format:check
-    - run: pnpm exec nx affected -t lint --parallel=3
-    - run: pnpm exec nx affected -t test --parallel=3 --configuration=ci
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: "pnpm"
+    - name: Get pnpm store directory
+      id: pnpm-cache
+      shell: bash
+      run: |
+        echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+    - name: Setup pnpm cache
+      uses: actions/cache@v3
+      with:
+        path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-store-
 
-  Build:
-    name: Build Affected to Production Server
+    - name: Install dependencies
+      if: steps.pnpm-cache.outputs.cache-hit != 'true'
+      run: pnpm i --frozen-lockfile
+    - name: Check Format
+      run: |
+        pnpm nx format:check
+    - name: Check Lint Affected
+      run: |
+        pnpm nx affected -t lint --parallel=3
+    - name: Check Test Affected
+      run: |
+        pnpm nx affected -t test --parallel=3 --configuration=ci
+    - name: Build Affected
+      run: |
+        pnpm nx affected -t build --parallel=3
+    
+  deploy:
+    name: Deploy to GCP
     runs-on: ubuntu-latest
     environment: Production
-    needs: Test
+    needs: build-and-test
+
+    strategy:
+      matrix:
+        node-version: [18.x]
     
     steps:
-    - run: pnpm exec nx affected -t build --parallel=3
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name: Install PNPM
+      uses: pnpm/action-setup@v2
+      with:
+          version: 8
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: "pnpm"
+
+    - name: Deploy Application
+      run: |
+        echo "Deploy to GCP"
