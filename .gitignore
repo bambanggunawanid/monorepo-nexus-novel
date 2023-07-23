@@ -3,6 +3,9 @@
 /tmp
 /out-tsc
 
+# secure files
+.env
+
 # dependencies
 node_modules
 node_modules/**
@@ -94,3 +97,21 @@ kubectl*
 
 # Secure
 *htpasswd*
+
+# Expo
+node_modules/
+.expo/
+.yarn/
+dist/
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+cache/
+
+apps/core/nexus-cloud-mobile-e2e/artifacts
+apps/todo-app-e2e/artifacts

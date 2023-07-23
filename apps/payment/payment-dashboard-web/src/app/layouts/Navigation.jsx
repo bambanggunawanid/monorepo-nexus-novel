@@ -1,4 +1,4 @@
-const Navigation = ({ path = "Dashboard" }) => {
+const Navigation = ({ path = 'Dashboard' }) => {
     return (
         <div className="flex items-center justify-between py-2 pl-6 pr-4 bg-gray-50 shadow-sm">
             <div className="flex items-center pl-2 space-x-4">

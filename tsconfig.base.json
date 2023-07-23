@@ -15,7 +15,7 @@
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
         "paths": {
-            "api/core/nexus-admin/account/nexus-account": [
+            "@api/nexus-account": [
                 "libs/api/core/nexus-admin/account/nexus-account/src/index.ts"
             ],
             "api/core/nexus-admin/storage/nexus-cloud-storage": [

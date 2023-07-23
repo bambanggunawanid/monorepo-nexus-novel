@@ -25,7 +25,8 @@
             "executor": "@nx/vite:dev-server",
             "defaultConfiguration": "development",
             "options": {
-                "buildTarget": "core-nexus-cloud-web:build"
+                "buildTarget": "core-nexus-cloud-web:build",
+                "proxyConfig": "apps/core/nexus-cloud-web/proxy.conf.json"
             },
             "configurations": {
                 "development": {

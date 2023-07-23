@@ -1,30 +1,30 @@
-import { Dialog, Transition } from "@headlessui/react";
-import React, { Fragment } from "react";
+import { Dialog, Transition } from '@headlessui/react';
+import React, { Fragment } from 'react';
 
 const ModalContainer = ({
     children,
     isOpen,
     setIsOpen,
     clickOutSideToClose = false,
-    size = "md",
-    margin = "yes"
+    size = 'md',
+    margin = 'yes',
 }) => {
     const closeModal = () => {
         if (clickOutSideToClose) {
             setIsOpen(true);
         }
     };
-    let modalWidth = "w-3/6";
-    if (size === "lg") {
-        modalWidth = "w-4/6";
+    let modalWidth = 'w-3/6';
+    if (size === 'lg') {
+        modalWidth = 'w-4/6';
     }
 
-    if (size === "xl") {
-        modalWidth = "w-5/6";
+    if (size === 'xl') {
+        modalWidth = 'w-5/6';
     }
 
-    if (size === "sm") {
-        modalWidth = "w-2/6";
+    if (size === 'sm') {
+        modalWidth = 'w-2/6';
     }
 
     return (
@@ -58,7 +58,7 @@ const ModalContainer = ({
                     >
                         <div
                             className={`relative ${modalWidth} mx-auto bg-white rounded ${
-                                margin === "yes" ? "mb-56" : ""
+                                margin === 'yes' ? 'mb-56' : ''
                             }`}
                         >
                             {children}

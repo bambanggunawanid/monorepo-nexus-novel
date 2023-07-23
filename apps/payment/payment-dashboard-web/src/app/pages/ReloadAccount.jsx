@@ -1,12 +1,12 @@
-import React, { useEffect, useCallback, useState } from "react";
+import React, { useEffect, useCallback, useState } from 'react';
 
-import Analytics from "../components/Analytics";
-import Datatable from "../components/datatables/Datatable";
-import ReloadAccountForm from "../components/ReloadAccountForm";
-import { PageTitle } from "../components/utils";
-import { RELOAD_ACCOUNT_HISTORY } from "../constants";
-import { checkPermissions, formatToCurrency, toast } from "../helpers";
-import AdminLayout from "../layouts/AdminLayout";
+import Analytics from '../components/Analytics';
+import Datatable from '../components/datatables/Datatable';
+import ReloadAccountForm from '../components/ReloadAccountForm';
+import { PageTitle } from '../components/utils';
+import { RELOAD_ACCOUNT_HISTORY } from '../constants';
+import { checkPermissions, formatToCurrency, toast } from '../helpers';
+import AdminLayout from '../layouts/AdminLayout';
 
 const ReloadAccount = () => {
     const [balance, setBalance] = useState(10840);
@@ -18,7 +18,7 @@ const ReloadAccount = () => {
         setLoading(true);
         setTimeout(() => {
             setData(
-                RELOAD_ACCOUNT_HISTORY.map(item => {
+                RELOAD_ACCOUNT_HISTORY.map((item) => {
                     return {
                         id: item.id,
                         registerNumber: {
@@ -27,7 +27,7 @@ const ReloadAccount = () => {
                                 <div className="text-lg text-purple-500 cursor-pointer hover:cursor-pointer">
                                     {item.registerNumber}
                                 </div>
-                            )
+                            ),
                         },
                         date: {
                             text: item.date,
@@ -47,28 +47,38 @@ const ReloadAccount = () => {
                                             d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                                         />
                                     </svg>
-                                    <span className="font-light">{item.date}</span>
+                                    <span className="font-light">
+                                        {item.date}
+                                    </span>
                                 </div>
-                            )
+                            ),
                         },
                         amount: {
                             text: item.amount,
-                            jsx: <span className="font-light">{formatToCurrency(item.amount)}</span>
+                            jsx: (
+                                <span className="font-light">
+                                    {formatToCurrency(item.amount)}
+                                </span>
+                            ),
                         },
                         status: {
                             text: item.status,
                             jsx: (
                                 <div
                                     className={`inline-block px-2 py-1 text-xs font-light text-${
-                                        item.status === "success" ? "green" : "red"
+                                        item.status === 'success'
+                                            ? 'green'
+                                            : 'red'
                                     }-500 bg-${
-                                        item.status === "success" ? "green" : "red"
+                                        item.status === 'success'
+                                            ? 'green'
+                                            : 'red'
                                     }-100 rounded`}
                                 >
                                     {item.status}
                                 </div>
-                            )
-                        }
+                            ),
+                        },
                     };
                 })
             );
@@ -77,24 +87,24 @@ const ReloadAccount = () => {
     }, []);
 
     const deleteItem = useCallback(
-        itemId => {
-            setData(data.filter(item => item.id !== itemId));
-            toast("success", "Success of the suppression");
+        (itemId) => {
+            setData(data.filter((item) => item.id !== itemId));
+            toast('success', 'Success of the suppression');
         },
         [data]
     );
 
     const deleteItems = useCallback(
-        itemsId => {
-            setData(data.filter(item => !itemsId.includes(item.id)));
-            toast("success", "Success of the deletions");
+        (itemsId) => {
+            setData(data.filter((item) => !itemsId.includes(item.id)));
+            toast('success', 'Success of the deletions');
         },
         [data]
     );
 
     const addItem = useCallback(
-        amount => {
-            setBalance(b => parseInt(b) + parseInt(amount));
+        (amount) => {
+            setBalance((b) => parseInt(b) + parseInt(amount));
             setData([
                 {
                     id: Date.now().toString(),
@@ -104,10 +114,10 @@ const ReloadAccount = () => {
                             <div className="text-lg text-purple-500 cursor-pointer hover:cursor-pointer">
                                 #{Date.now().toString()}
                             </div>
-                        )
+                        ),
                     },
                     date: {
-                        text: window.moment().format("ll"),
+                        text: window.moment().format('ll'),
                         jsx: (
                             <div className="flex items-center">
                                 <svg
@@ -124,35 +134,41 @@ const ReloadAccount = () => {
                                         d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                                     />
                                 </svg>
-                                <span className="font-light">{window.moment().format("ll")}</span>
+                                <span className="font-light">
+                                    {window.moment().format('ll')}
+                                </span>
                             </div>
-                        )
+                        ),
                     },
                     amount: {
                         text: amount,
-                        jsx: <span className="font-light">{formatToCurrency(amount)}</span>
+                        jsx: (
+                            <span className="font-light">
+                                {formatToCurrency(amount)}
+                            </span>
+                        ),
                     },
                     status: {
-                        text: "success",
+                        text: 'success',
                         jsx: (
                             <div
                                 className={
-                                    "inline-block px-2 py-1 text-xs font-light text-green-500 bg-green-100 rounded"
+                                    'inline-block px-2 py-1 text-xs font-light text-green-500 bg-green-100 rounded'
                                 }
                             >
                                 success
                             </div>
-                        )
-                    }
+                        ),
+                    },
                 },
-                ...data
+                ...data,
             ]);
         },
         [data]
     );
 
     return (
-        <AdminLayout path={"Reload Account"}>
+        <AdminLayout path={'Reload Account'}>
             <div className="mb-7">
                 <Analytics balance={balance} />
             </div>
@@ -160,18 +176,18 @@ const ReloadAccount = () => {
             <PageTitle>Reload Account History</PageTitle>
 
             <Datatable
-                head={["ID", "Date", "Amount", "Status"]}
-                dataProperty={["registerNumber", "date", "amount", "status"]}
+                head={['ID', 'Date', 'Amount', 'Status']}
+                dataProperty={['registerNumber', 'date', 'amount', 'status']}
                 list={data}
                 checkAll={true}
                 onDeleteItem={deleteItem}
                 onDeleteItems={deleteItems}
                 addButton={
-                    checkPermissions(["add"])
+                    checkPermissions(['add'])
                         ? {
-                              type: "button",
-                              text: "Reload Account",
-                              url: "/add",
+                              type: 'button',
+                              text: 'Reload Account',
+                              url: '/add',
                               form: (
                                   <ReloadAccountForm
                                       loadData={addItem}
@@ -182,14 +198,14 @@ const ReloadAccount = () => {
                               ),
                               click: () => {
                                   setShowForm(!showForm);
-                              }
+                              },
                           }
                         : null
                 }
                 deleteButton={
-                    checkPermissions(["delete"])
+                    checkPermissions(['delete'])
                         ? {
-                              text: "Delete"
+                              text: 'Delete',
                           }
                         : null
                 }

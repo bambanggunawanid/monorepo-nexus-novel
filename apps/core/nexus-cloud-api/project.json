@@ -1,0 +1,64 @@
+{
+    "name": "core-nexus-cloud-api",
+    "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "apps/core/nexus-cloud-api/src",
+    "projectType": "application",
+    "targets": {
+        "build": {
+            "executor": "@nx/webpack:webpack",
+            "outputs": ["{options.outputPath}"],
+            "defaultConfiguration": "production",
+            "options": {
+                "target": "node",
+                "compiler": "tsc",
+                "outputPath": "dist/apps/core/nexus-cloud-api",
+                "main": "apps/core/nexus-cloud-api/src/main.ts",
+                "tsConfig": "apps/core/nexus-cloud-api/tsconfig.app.json",
+                "assets": ["apps/core/nexus-cloud-api/src/assets"],
+                "isolatedConfig": true,
+                "webpackConfig": "apps/core/nexus-cloud-api/webpack.config.js"
+            },
+            "configurations": {
+                "development": {},
+                "production": {}
+            }
+        },
+        "serve": {
+            "executor": "@nx/js:node",
+            "defaultConfiguration": "development",
+            "options": {
+                "buildTarget": "core-nexus-cloud-api:build"
+            },
+            "configurations": {
+                "development": {
+                    "buildTarget": "core-nexus-cloud-api:build:development"
+                },
+                "production": {
+                    "buildTarget": "core-nexus-cloud-api:build:production"
+                }
+            }
+        },
+        "lint": {
+            "executor": "@nx/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["apps/core/nexus-cloud-api/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "apps/core/nexus-cloud-api/jest.config.ts",
+                "passWithNoTests": true
+            },
+            "configurations": {
+                "ci": {
+                    "ci": true,
+                    "codeCoverage": true
+                }
+            }
+        }
+    },
+    "tags": []
+}

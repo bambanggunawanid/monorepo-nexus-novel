@@ -1,14 +1,14 @@
-import React from "react";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import React from 'react';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
-import { Auth, Guest } from "./middlewares";
-import Dashboard from "./pages/Dashboard";
-import ForgotPassword from "./pages/ForgotPassword";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import ReloadAccount from "./pages/ReloadAccount";
-import ResetPassword from "./pages/ResetPassword";
+import { Auth, Guest } from './middlewares';
+import Dashboard from './pages/Dashboard';
+import ForgotPassword from './pages/ForgotPassword';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import ReloadAccount from './pages/ReloadAccount';
+import ResetPassword from './pages/ResetPassword';
 
 export function App() {
     return (

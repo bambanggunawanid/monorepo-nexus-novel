@@ -2,10 +2,10 @@ import {
     SlSocialFacebook,
     SlSocialInstagram,
     SlSocialLinkedin,
-    SlSocialTwitter
-} from "react-icons/sl";
+    SlSocialTwitter,
+} from 'react-icons/sl';
 
-import { Container } from "../components/utils";
+import { Container } from '../components/utils';
 
 const Footer = () => {
     return (
