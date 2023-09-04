@@ -4,7 +4,8 @@
 /out-tsc
 
 # secure files
-.env
+*.env
+nx-cloud.env
 
 # dependencies
 node_modules
