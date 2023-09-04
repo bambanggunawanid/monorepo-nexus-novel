@@ -1,5 +1,5 @@
-const { getJestProjects } = require('@nx/jest');
+// const { getJestProjects } = require('@nx/jest');
 
-module.exports = {
-    projects: getJestProjects(),
-};
+// module.exports = {
+//     projects: getJestProjects(),
+// };
