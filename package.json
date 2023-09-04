@@ -10,9 +10,9 @@
         "package.json"
     ],
     "scripts": {
-        "all:lint": "pnpm nx run-many --target=lint --all --fix=true --parallel --maxParallel=10",
-        "all:build": "pnpm nx run-many --target=build --all --parallel --maxParallel=10",
-        "all:test": "pnpm nx run-many --target=test --all --parallel --maxParallel=10"
+        "all:lint": "pnpm nx run-many --target=lint --all --fix=true --parallel --maxParallel=5",
+        "all:build": "pnpm nx run-many --target=build --all --parallel --maxParallel=5",
+        "all:test": "pnpm nx run-many --target=test --all --parallel --maxParallel=5"
     },
     "devDependencies": {
         "@babel/preset-react": "^7.14.5",
